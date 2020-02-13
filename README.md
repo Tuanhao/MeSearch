@@ -1,5 +1,6 @@
 # MeSearch
 Customized search tool - 4th Year Project
+
 Credit for project's name: @vivianle1333
 
 ## Install dependencies
