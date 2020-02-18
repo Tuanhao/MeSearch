@@ -2,13 +2,13 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
+const webSearchApi = require('./api/webSearchAPI')
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Put all API endpoints under '/api'
 app.get('/api/passwords', (req, res) => {
-
   // Generate some passwords
   const passwords = [1,2,3,4,5]
 
@@ -17,6 +17,14 @@ app.get('/api/passwords', (req, res) => {
 
   console.log('Sent passwords');
 });
+
+app.get('/api/search', (req, res) => {
+  webSearchApi.search('DonaldTrump').then((result) => {
+    const body = result.body;
+    res.json(body);
+  })
+});
+
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
