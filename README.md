@@ -25,7 +25,7 @@ The app will automatically open, if not you can access it here http://localhost:
 
 ## Deployment
     git add .
-    git commit
+    git commit -m "<commit message>"
     git push heroku master
 
 ## Note
