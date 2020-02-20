@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Tuanhao/MeSearch#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "mysql": "^2.18.1",
     "unirest": "^0.6.0"
   },
   "devDependencies": {
