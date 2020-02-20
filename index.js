@@ -16,6 +16,8 @@ connection.connect((err) => {
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')))
 
+app.use(express.json())
+
 // Put all API endpoints under '/api'
 app.post('/api/login', (req, res) => {
   
@@ -30,7 +32,8 @@ app.post('/api/login', (req, res) => {
 });
 
 app.post('/api/register', (req, res) => {
-  
+  console.log('here');
+  console.log(req.body);
   // const username = 'user1'
   // const password = 'password'
   // let userId = 20
@@ -40,11 +43,12 @@ app.post('/api/register', (req, res) => {
   // const movies = ['123', '456']
   // const music = ['123', '456']
   // const television = ['abc', 'def']
-  let userId = 0
+  
   const {username, password, sports, books, games, movies, music, television} = req.body;
+  let userId = 0;
 
   let registerAccSQL = 
-  `INSERT IGNORE INTO user_account(username, password)
+  `INSERT INTO user_account(username, password)
   VALUES('${username}', '${password}')`
  
   connection.query(registerAccSQL, (err, data) => {
@@ -56,29 +60,29 @@ app.post('/api/register', (req, res) => {
         msg: 'username duplicated'
       })
     } else {
-      userId = data.userId
+      userId = data.insertId
+      let registerProfileSQL =
+      `INSERT INTO user_profile(userId, sports, books, games, movies, music, television)
+      VALUES(${userId}, '${sports}', '${books}', '${games}', '${movies}', '${music}', '${television}')`
+
+      connection.query(registerProfileSQL, (err, data) => {
+        if(err) {
+          res.json({
+            status: 'ERROR',
+            userId,
+            msg: 'Fail to register',
+            err
+          });
+        } else {
+          res.json({
+            status: 'OK',
+            userId
+          });
+        }
+      })
     } 
   })
-
-  let registerProfileSQL =
-  `INSERT INTO user_profile(userId, sports, books, games, movies, music, television)
-  VALUES(${userId}, '${sports}', '${books}', '${games}', '${movies}', '${music}', '${television}')`
-
-  connection.query(registerProfileSQL, (err, data) => {
-    if(err) {
-      res.json({
-        status: 'ERROR',
-        userId,
-        msg: 'Fail to register',
-        err
-      });
-    } else {
-      res.json({
-        status: 'OK',
-        userId
-      });
-    }
-  })
+  
 });
 
 app.get('/api/search', (req, res) => {
