@@ -17,7 +17,7 @@ connection.connect((err) => {
 app.use(express.static(path.join(__dirname, 'client/build')))
 
 // Put all API endpoints under '/api'
-app.get('/api/login', (req, res) => {
+app.post('/api/login', (req, res) => {
   
   const username = 'user'
   const password = 'password'
@@ -29,17 +29,19 @@ app.get('/api/login', (req, res) => {
 
 });
 
-app.get('/api/register', (req, res) => {
+app.post('/api/register', (req, res) => {
   
-  const username = 'user1'
-  const password = 'password'
-  let userid = 20
-  const sports = ['123', '456']
-  const books = ['123', '456']
-  const games = ['123', '456']
-  const movies = ['123', '456']
-  const music = ['123', '456']
-  const television = ['abc', 'def']
+  // const username = 'user1'
+  // const password = 'password'
+  // let userId = 20
+  // const sports = ['123', '456']
+  // const books = ['123', '456']
+  // const games = ['123', '456']
+  // const movies = ['123', '456']
+  // const music = ['123', '456']
+  // const television = ['abc', 'def']
+  let userId = 0
+  const {username, password, sports, books, games, movies, music, television} = req.body;
 
   let registerAccSQL = 
   `INSERT IGNORE INTO user_account(username, password)
@@ -48,34 +50,50 @@ app.get('/api/register', (req, res) => {
   connection.query(registerAccSQL, (err, data) => {
     // errorno == 1062 (duplicate error)
     if(err) {
-      console.log(err)
-      if (err.errno == 1062) res.json({msg: 'username duplicated'})
+      if (err.errno == 1062) res.json({
+        status: 'ERROR',
+        userId: 0,
+        msg: 'username duplicated'
+      })
     } else {
-      userid = data.userid
+      userId = data.userId
     } 
   })
 
   let registerProfileSQL =
-  `INSERT INTO user_profile(userid, sports, books, games, movies, music, television)
-  VALUES(${userid}, '${sports}', '${books}', '${games}', '${movies}', '${music}', '${television}')`
+  `INSERT INTO user_profile(userId, sports, books, games, movies, music, television)
+  VALUES(${userId}, '${sports}', '${books}', '${games}', '${movies}', '${music}', '${television}')`
 
   connection.query(registerProfileSQL, (err, data) => {
-    err? console.log(err): res.json({users: data});
+    if(err) {
+      res.json({
+        status: 'ERROR',
+        userId,
+        msg: 'Fail to register',
+        err
+      });
+    } else {
+      res.json({
+        status: 'OK',
+        userId
+      });
+    }
   })
 });
 
 app.get('/api/search', (req, res) => {
   //TODO: check credentials
 
-  // TODO: make query to find keyword
-  // let loginSQL = `SELECT * FROM user_account WHERE username='${username}' AND password='${password}'`
+  const userId = 21
+  const category = 'sports'
+  let filterKeywords = ''
+  let loginSQL = `SELECT ${category} FROM user_profile WHERE userId='${userId}'`
  
-  // connection.query(loginSQL, (err, data) => {
-  //   err? console.log(err): res.json({users: data});
-  // })
+  connection.query(loginSQL, (err, data) => {
+    err? console.log(err): filterKeywords = data.split(',');
+  })
   
-  const searchKeyword = 'Donald Trump'
-  const filterKeywords = ['Australia', 'President', 'CNN'] 
+  const searchKeyword = req.body.keyword || 'Donald Trump'
   webSearchApi.search(searchKeyword).then((result) => {
     console.log(result.body.value);
     return result.body.value
