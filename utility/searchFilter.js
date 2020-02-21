@@ -9,19 +9,20 @@ function searchFilter(connection, searchResults, filterKeywords, userId) {
     });
   })
   if (filteredResults.length > 10) {
-    insert(connection,`INSERT INTO temp_search_result(userId, searchresults) VALUES('${userId}', '${filteredResults}')`)
+    insert(connection,`INSERT INTO temp_search_result(userId, searchResults) VALUES('${userId}', '${filteredResults.toString()}')`)
   }
   if (filteredResults.length == 0) {
-    insert(connection,`INSERT INTO temp_search_result(userId, searchresults) VALUES('${userId}', '${searchResults}')`)
-    return searchResults.slice(0,10), false
+    console.log(searchResults.toString());
+    insert(connection,`INSERT INTO temp_search_result(userId, searchResults) VALUES('${userId}', '${searchResults.toString()}')`)
+    return {filteredResults: searchResults.slice(0,10), filterSuccess: false}
   }
-  return filteredResults.slice(0, 10), true
+  return {filteredResults: filteredResults.slice(0, 10), filterSuccess: true}
 }
 
 function insert(connection, SQLquery) {
-  connection.query(SQLquery, (err, data) => {
-    if (err) console.log(errr)
-  })
+  // connection.query(SQLquery, (err, data) => {
+  //   if (err) console.log(err)
+  // })
 }
 
 module.exports = searchFilter
