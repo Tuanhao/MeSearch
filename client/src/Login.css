@@ -1,0 +1,63 @@
+button-group,
+.Login {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+button-group > button,
+.Login > button {
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+button-group > button:hover,
+.Login > button:hover {
+  z-index: 1;
+}
+
+button-group > button:focus, button-group > button:active, button-group > button.active,
+.Login > button:focus,
+.Login > button:active,
+.Login > button.active {
+  z-index: 1;
+}
+
+.Login {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Login > button,
+.Login > button-group {
+  width: 100%;
+}
+
+.Login > button:not(:first-child),
+.Login > button-group:not(:first-child) {
+  margin-top: -1px;
+}
+
+.Login > button:not(:last-child):not(.dropdown-toggle),
+.Login > button-group:not(:last-child) > button {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.Login > button:not(:first-child),
+.Login > button-group:not(:first-child) > button {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
