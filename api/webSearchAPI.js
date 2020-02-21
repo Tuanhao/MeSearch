@@ -6,7 +6,7 @@ async function search(keyword) {
   req.query({
     "autoCorrect": "true",
     "pageNumber": "1",
-    "pageSize": "10",
+    "pageSize": "50",
     "q": keyword,
     "safeSearch": "false"
   });
@@ -23,7 +23,7 @@ async function search(keyword) {
       throw new Error(res.error);
     }
   });
-  
+
   return req.then((res) => {
     return res
   })
