@@ -36,8 +36,6 @@ class App extends Component {
 
 		return (
 			<div className="App">
-				{passwords}
-				
 				{!this.state.LoginDone && <LoginAndRegistration handlerLgRg = {this.handlerLgRg} />}
 				{(this.state.LoginDone && !this.state.MSearchDone) && <MainSearch handlerMSearch = {this.handlerMSearch} />}
 				{this.state.MSearchDone && <SearchResults />}
@@ -45,5 +43,5 @@ class App extends Component {
 		)
 	}
 }
-
+// { passwords }
 export default App;

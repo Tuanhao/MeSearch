@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-//import './Register.css';
+import './Register.css';
+//import './bootstrap.css';
 
 class Register extends Component {
 	constructor() {
@@ -12,7 +13,7 @@ class Register extends Component {
 			books: "None",
 			music: "None",
 			games: "None",
-			televisions: "None"
+			television: "None"
 		}
 		this.setUsername = this.setUsername.bind(this);
 		this.setPassword = this.setPassword.bind(this);
@@ -25,47 +26,31 @@ class Register extends Component {
 		
 	}
 
-	setSport(event) {
-		 this.setState({sports: event.target.value})
-	}
+	setSport(event) { this.setState({sports: event.target.value}) }
 
-	setMusic(event) {
-		this.setState({music: event.target.value})
-	}
+	setMusic(event) { this.setState({music: event.target.value}) }
 	
-	setGame(event) {
-		this.setState({games: event.target.value})
-	}
+	setGame(event) { this.setState({games: event.target.value}) }
 	
-	setBook(event) {
-		this.setState({books: event.target.value})
-	}
+	setBook(event) { this.setState({books: event.target.value}) }
 	
-	setMovie(event) {
-		this.setState({movies: event.target.value})
-	}
+	setMovie(event) { this.setState({movies: event.target.value}) }
 	
-	setTVShow(event) {
-		this.setState({televisions: event.target.value})
-	}
+	setTVShow(event) { this.setState({televisions: event.target.value}) }
 	
-	setUsername(event) {
-		this.setState({username: event.target.value})
-	}
+	setUsername(event) { this.setState({username: event.target.value}) }
 	
-	setPassword(event) {
-		this.setState({password: event.target.value})
-	}
+	setPassword(event) { this.setState({password: event.target.value}) }
 	
 	
 
 	handleClick = () => {
-		fetch('/api/login', {
+		fetch('/api/register', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: {
+			body: JSON.stringify({
 				password: this.state.password,
 				username: this.state.username,
 				sports: this.state.sports,
@@ -73,8 +58,8 @@ class Register extends Component {
 				books: this.state.books,
 				music: this.state.music,
 				games: this.state.games,
-				televisions: this.state.televisions	
-			}
+				television: this.state.television
+			})
 		})
 		.then((response) => {
 			return response.json()
@@ -82,34 +67,32 @@ class Register extends Component {
 		.then((myJson) => {
 			console.log(myJson)
 		});
-		
+		//this.props.handlerLgRg();
 	}
 
 	render() {
 		return (
 			<div className="Register">
-				
-					<label>Username:</label>
-					<input type="text" id="username" name="username" value={this.state.value} onChange= {this.setUsername}></input><br></br>
-					<label>Password:</label>
-					<input type="text" id="password" name="password" value={this.state.value} onChange= {this.setPassword}></input><br></br>
-					<label>Repeat Password:</label>
-					<input type="text" id="rpassword" name="rpassword"></input><br></br>
-					<label>Tell US What You Like</label>
-					<label>Sports:</label>
-					<input type="text" id="Sports" name="Sports" value={this.state.value} onChange= {this.setSport}></input><br></br>
-					<label>Movies:</label>
-					<input type="text" id="Movies" name="Movies" value={this.state.value} onChange= {this.setMovie}></input><br></br>
-					<label>Books:</label>
-					<input type="text" id="Books" name="Books" value={this.state.value} onChange= {this.setBook}></input><br></br>
-					<label>Games:</label>
-					<input type="text" id="Games" name="Games" value={this.state.value} onChange= {this.setGame}></input><br></br>
-					<label>Music:</label>
-					<input type="text" id="Music" name="Music" value={this.state.value} onChange= {this.setMusic}></input><br></br>
-					<label>TV Shows:</label>
-					<input type="text" id="TVShows" name="TVShows" value={this.state.value} onChange= {this.setTVShow}></input><br></br>
-					<button value="Register" onClick = {this.handleClick}>Register</button>	
-					
+				<label>Username:</label>
+				<input type="text" class ="form-control" id="username" name="username" value={this.state.value} onChange= {this.setUsername}></input><br></br>
+				<label>Password:</label>
+				<input type="password" class ="form-control" id="password" name="password" value={this.state.value} onChange= {this.setPassword}></input><br></br>
+				<label>Repeat Password:</label>
+				<input type="password" class ="form-control" id="rpassword" name="rpassword"></input><br></br><br></br>
+				<h4>Tell US What You Like</h4><br></br>
+				<label>Sports:</label>
+				<input type="text" class ="form-control" id="Sports" name="Sports" value={this.state.value} onChange= {this.setSport}></input><br></br>
+				<label>Movies:</label>
+				<input type="text" class ="form-control" id="Movies" name="Movies" value={this.state.value} onChange= {this.setMovie}></input><br></br>
+				<label>Books:</label>
+				<input type="text" class ="form-control" id="Books" name="Books" value={this.state.value} onChange= {this.setBook}></input><br></br>
+				<label>Games:</label>
+				<input type="text" class ="form-control" id="Games" name="Games" value={this.state.value} onChange= {this.setGame}></input><br></br>
+				<label>Music:</label>
+				<input type="text" class ="form-control" id="Music" name="Music" value={this.state.value} onChange= {this.setMusic}></input><br></br>
+				<label>TV Shows:</label>
+				<input type="text" class ="form-control" id="TVShows" name="TVShows" value={this.state.value} onChange= {this.setTVShow}></input><br></br>
+				<button value="Register" onClick = {this.handleClick}>Register</button>		
 				<button  onClick = {this.props.handlerLgRg} >Back to App</button>
 			</div>
 		); 

@@ -22,6 +22,7 @@ class LoginAndRegistration extends Component {
 	render() {
 		return (
 			<div>
+				<h1>MeSearch</h1>
 				{!(this.state.isShowLG || this.state.isShowRG) && <button onClick={this.handleClickLG}>Login</button>}
 				{this.state.isShowLG && <Login handlerLgRg = {this.props.handlerLgRg} />}
 

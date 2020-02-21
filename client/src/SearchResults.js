@@ -12,11 +12,10 @@ class SearchResults extends Component {
 	render() {
 		return (
 			<div className="SearchResults">
-				<form>
-					<input type="text" id="searchBar" name="searchBar"></input>
-					<input type="submit" value="Search"></input>
-					<button value="SearchButton">Search</button>
-				</form>
+				<h3>MeSearch</h3>
+				<input type="text" class ="form-control" id="searchBar" name="searchBar"></input>
+				<button value="SearchButton">Search</button>
+				<hr></hr>
 				<div className="results">
 				</div>
 			</div>

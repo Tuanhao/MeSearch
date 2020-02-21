@@ -1,0 +1,63 @@
+button-group,
+.Register {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+button-group > button,
+.Register > button {
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+button-group > button:hover,
+.Register > button:hover {
+  z-index: 1;
+}
+
+button-group > button:focus, button-group > button:active, button-group > button.active,
+.Register > button:focus,
+.Register > button:active,
+.Register > button.active {
+  z-index: 1;
+}
+
+.Register {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Register > button,
+.Register > button-group {
+  width: 100%;
+}
+
+.Register > button:not(:first-child),
+.Register > button-group:not(:first-child) {
+  margin-top: -1px;
+}
+
+.Register > button:not(:last-child):not(.dropdown-toggle),
+.Register > button-group:not(:last-child) > button {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.Register > button:not(:first-child),
+.Register > button-group:not(:first-child) > button {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
