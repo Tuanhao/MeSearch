@@ -6,9 +6,8 @@ class MainSearch extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
-		//	userId: 'None',
 			keyword: null,
-			category: 'None'
+			category: null
 		};
 		this.setCategory = this.setCategory.bind(this);
 		this.setKeyword = this.setKeyword.bind(this);
@@ -35,7 +34,7 @@ class MainSearch extends Component {
 			console.log(myJson.filteredResults)
 			this.props.handlerResults(myJson.filteredResults)
 		});
-		//this.props.handlerMSearch();
+		this.props.handlerMSearch();
 		//this.props.handlerResults([{title: "onet", url: "url1", description: "des1"}, {title: "one2", url: "url2", description: "des3"}])
 	}
 	
@@ -55,9 +54,9 @@ class MainSearch extends Component {
 					value={this.state.keyword}
 					onChange={this.setKeyword}
 					></input><br></br>
-				<button value="SearchButton" onClick = {this.handleClick} >Search</button>					
-				<button  onClick = {this.props.handlerMSearch}>Back to App</button>
+				<button value="SearchButton" onClick = {this.handleClick} >Search</button><br /><br />			
 				<div>
+					<label>Pick a Category</label> <br />
 					<label>
 					<input 
 						type="radio" 
@@ -106,4 +105,5 @@ class MainSearch extends Component {
 	}
 }
 
+//<button  onClick = {this.props.handlerMSearch}>Next</button>
 export default MainSearch;

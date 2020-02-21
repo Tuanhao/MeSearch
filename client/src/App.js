@@ -7,7 +7,7 @@ import SearchResults from './SearchResults.js';
 class App extends Component {
 	// Initialize state
 	state = { 
-		userId: "None",
+		userId: null,
 		results: []
 	}
 
@@ -37,7 +37,6 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-			{this.state.userId}
 				{!this.state.LoginDone && <LoginAndRegistration 
 					handlerLgRg = {this.handlerLgRg} 
 					handlerUserId = {this.handlerUserId} 

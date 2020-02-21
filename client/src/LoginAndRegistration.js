@@ -9,7 +9,7 @@ class LoginAndRegistration extends Component {
 		this.state = { 
 			isShowLG: false,
 			isShowRG: false,
-			userId: 'None'
+			userId: null
 		}
 		this.handleClickLG = this.handleClickLG.bind(this);
 		this.handleClickRG = this.handleClickRG.bind(this);

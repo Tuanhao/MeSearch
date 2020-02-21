@@ -53,7 +53,7 @@
   --green: #77B300;
   --teal: #20c997;
   --cyan: #9933CC;
-  --white: #fff;
+  --white: #ffff;
   --gray: #555;
   --gray-dark: #222;
   --primary: #2A9FD6;
@@ -97,7 +97,8 @@ body {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #ADAFAE;
+  /* color: #ADAFAE; */
+  color: #FFFFFF; 
   text-align: left;
   background-color: #060606;
 }
@@ -152,7 +153,8 @@ button:focus, button.focus {
 button {
   display: inline-block;
   font-weight: 400;
-  color: #ADAFAE;
+  /* color: #ADAFAE; */
+  color: #FFFFFF;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;

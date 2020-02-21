@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 //import './SearchResults.css';
-//import MainSearch from './MainSearch.css';
 
 class SearchResults extends Component {
 	constructor(props) {
@@ -12,7 +11,6 @@ class SearchResults extends Component {
 	}
 	
 	createResults() {
-		//this.setState(results: this.props.results);
 		let res = this.props.results;
 		let table = []
 

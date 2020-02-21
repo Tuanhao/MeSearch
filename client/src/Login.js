@@ -5,9 +5,9 @@ class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
-			username: "None",
-			password: "None",
-			userId: "None"
+			username: null,
+			password: null,
+			userId: null
 
 		};
 		this.setUsername = this.setUsername.bind(this);
@@ -64,7 +64,7 @@ class Login extends Component {
 					onChange={this.setPassword}
 				></input><br></br>
 				<button  value="Login"  onClick = {this.handleClick} >Login</button>
-				<button  onClick = {this.props.handlerLgRg} >Back to App</button>
+				<button  onClick = {this.props.handlerLgRg} >Next</button>
 			</div>
 		); 
 	}
