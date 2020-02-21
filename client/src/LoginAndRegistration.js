@@ -9,7 +9,8 @@ class LoginAndRegistration extends Component {
 		this.state = { 
 			isShowLG: false,
 			isShowRG: false,
-			Done: false
+			userId: 'None',
+			status: 'None'
 		}
 		this.handleClickLG = this.handleClickLG.bind(this);
 		this.handleClickRG = this.handleClickRG.bind(this);
@@ -18,16 +19,18 @@ class LoginAndRegistration extends Component {
 	handleClickLG() {this.setState({ isShowLG: true })}
 	
 	handleClickRG() {this.setState({ isShowRG: true })}
+	
+	handlerUserId(value) {this.setState({ userId: value })}
 
 	render() {
 		return (
 			<div>
 				<h1>MeSearch</h1>
 				{!(this.state.isShowLG || this.state.isShowRG) && <button onClick={this.handleClickLG}>Login</button>}
-				{this.state.isShowLG && <Login handlerLgRg = {this.props.handlerLgRg} />}
+				{this.state.isShowLG && <Login handlerLgRg = {this.props.handlerLgRg} handlerUserId = {this.props.handlerUserId} />}
 
 				{!(this.state.isShowLG || this.state.isShowRG) && <button onClick={this.handleClickRG}>Register</button>}
-				{this.state.isShowRG && <Register  handlerLgRg = {this.props.handlerLgRg} />}	
+				{this.state.isShowRG && <Register  handlerLgRg = {this.props.handlerLgRg}  handlerUserId = {this.props.handlerUserId}/>}	
 			</div>
 		);
 	}

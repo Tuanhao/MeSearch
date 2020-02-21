@@ -6,7 +6,8 @@ class Login extends Component {
 		super();
 		this.state = { 
 			username: "None",
-			password: "None"
+			password: "None",
+			userId: "None"
 
 		};
 	}
@@ -28,8 +29,11 @@ class Login extends Component {
 		})
 		.then((myJson) => {
 			console.log(myJson)
+			this.setState({userId: myJson.userId}) 
+			this.props.handlerUserId(this.state.userId)
 		});
 		//this.props.handlerLgRg();
+		//this.props.handlerUserId(101);
 	}
 
 	render() {

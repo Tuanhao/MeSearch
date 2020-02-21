@@ -13,7 +13,8 @@ class Register extends Component {
 			books: "None",
 			music: "None",
 			games: "None",
-			television: "None"
+			television: "None",
+			status: 'None'
 		}
 		this.setUsername = this.setUsername.bind(this);
 		this.setPassword = this.setPassword.bind(this);
@@ -36,7 +37,7 @@ class Register extends Component {
 	
 	setMovie(event) { this.setState({movies: event.target.value}) }
 	
-	setTVShow(event) { this.setState({televisions: event.target.value}) }
+	setTVShow(event) { this.setState({television: event.target.value}) }
 	
 	setUsername(event) { this.setState({username: event.target.value}) }
 	
@@ -66,6 +67,8 @@ class Register extends Component {
 		})
 		.then((myJson) => {
 			console.log(myJson)
+			this.setState({userId: myJson.userId}) 
+			this.props.handlerUserId(this.state.userId)
 		});
 		//this.props.handlerLgRg();
 	}

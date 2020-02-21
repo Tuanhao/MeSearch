@@ -1,26 +1,110 @@
 import React, { Component } from 'react';
-import './MainSearch.css';
+//import './MainSearch.css';
+//import Register from './Register.js';
 
 class MainSearch extends Component {
 	constructor() {
 		super();
-		this.state = { Done: false };
+		this.state = { 
+			userId: 'None',
+			keyword: 'None',
+			category: 'None'
+		};
+		this.setCategory = this.setCategory.bind(this);
+		//this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	//handleClick() {
-	//	this.props.handlerMSearch();
-	//}
+
+	handleClick = () => {
+		fetch('/api/search', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			userId: this.props.userId,
+			keyword: 'None',
+			category: 'category'
+		
+		})
+		})
+		.then((response) => {
+			return response.json()
+		})
+		.then((myJson) => {
+			console.log(myJson)
+		});
+		//this.props.handlerMSearch();
+		//this.handleSubmit();
+	}
+	
+	setCategory(event) { this.setState({category: event.target.value}) }
+
+	
+	// handleSubmit(event) {
+		// event.preventDefault();
+    
+		//alert(`You chose the ${this.state.category} `);
+	// }
 
 	render() {
 		return (
 			<div className="MainSearch">
 				<h1>MeSearch</h1>
-				<input type="text" className ="form-control" id="searchBar" name="searchBar"></input><br></br>
-				<button value="SearchButton">Search</button>					
+				<input type="text" className ="form-control" id="category" name="category"></input><br></br>
+				<button value="SearchButton" onClick = {this.handleClick} >Search</button>					
 				<button  onClick = {this.props.handlerMSearch}>Back to App</button>
+				<div>
+					<label>
+					<input 
+						type="radio" 
+						value="sports" 
+						checked={this.state.category === 'sports'} 
+						onChange={this.setCategory} 
+					/>Sports</label>
+					<label>
+					<input 
+						type="radio" 
+						value="movies" 
+						checked={this.state.category === 'movies'} 
+						onChange={this.setCategory} 
+					/>Movies</label>
+					<label>
+					<input 
+						type="radio" 
+						value="music" 
+						checked={this.state.category === 'music'} 
+						onChange={this.setCategory} 
+					/>Music</label>
+					<label>
+					<input 
+						type="radio" 
+						value="books" 
+						checked={this.state.category === 'books'} 
+						onChange={this.setCategory} 
+					/>Books</label>
+					<label>
+					<input 
+						type="radio" 
+						value="games" 
+						checked={this.state.category === 'games'} 
+						onChange={this.setCategory} 
+					/>Games</label>
+					<label>
+					<input 
+						type="radio" 
+						value="television" 
+						checked={this.state.category === 'television'} 
+						onChange={this.setCategory} 
+					/>TV Shows</label>
+				</div>
 			</div>
 		); 
 	}
 }
 
+//onClick = {this.handleClick}
+			// <form onSubmit={this.handleSubmit}>
+	// <button type="submit" className="submit-button">Make your choice</button>
+			// </form>
 export default MainSearch;
