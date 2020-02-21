@@ -2,6 +2,7 @@
 # 2/21/2020
 import keysearch
 import nltk as nl
+import sys
 
 
 def selectnoun(wordlist, occurencelist):
@@ -98,7 +99,14 @@ def related(wordlist):
         # print(clist)
 
 
-words = ["you", "shall", "not", "pass"]
-rel = related(words)
-print("\nprint top 5 items in list\n")
-print(rel)
+def run(argv):
+    words = sys.argv[1:]
+    print(words)
+
+    # words = ["you", "shall", "not", "pass"]
+    rel = related(words)
+    print("\nprint top 5 items in list\n")
+    print(rel)
+
+if __name__ == '__main__':
+    run(sys.argv[1:])
