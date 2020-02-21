@@ -23,8 +23,8 @@ class MainSearch extends Component {
 		},
 		body: JSON.stringify({
 			userId: this.props.userId,
-			keyword: 'None',
-			category: 'category'
+			keyword: this.state.keyword,
+			category: this.state.userId
 		
 		})
 		})
@@ -38,7 +38,7 @@ class MainSearch extends Component {
 		//this.handleSubmit();
 	}
 	
-	setCategory(event) { this.setState({category: event.target.value}) }
+	setCategory(event) { this.setState({category: event.target.value}); }
 
 	
 	// handleSubmit(event) {
@@ -46,12 +46,20 @@ class MainSearch extends Component {
     
 		//alert(`You chose the ${this.state.category} `);
 	// }
+	
+	//setKeyword(event) { this.setState({keyword: event.target.value}); }
 
 	render() {
 		return (
 			<div className="MainSearch">
+			{this.state.keyword}
 				<h1>MeSearch</h1>
-				<input type="text" className ="form-control" id="category" name="category"></input><br></br>
+				<input 
+					type="text" 
+					className ="form-control" 
+					id="keyword" 
+					name="keyword"
+					></input><br></br>
 				<button value="SearchButton" onClick = {this.handleClick} >Search</button>					
 				<button  onClick = {this.props.handlerMSearch}>Back to App</button>
 				<div>
@@ -103,6 +111,9 @@ class MainSearch extends Component {
 	}
 }
 
+
+//value={this.state.keyword}
+//onChange={this.setKeyword}
 //onClick = {this.handleClick}
 			// <form onSubmit={this.handleSubmit}>
 	// <button type="submit" className="submit-button">Make your choice</button>
