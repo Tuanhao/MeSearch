@@ -11,6 +11,7 @@ class MainSearch extends Component {
 			category: 'None'
 		};
 		this.setCategory = this.setCategory.bind(this);
+		this.setKeyword = this.setKeyword.bind(this);
 		//this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
@@ -24,7 +25,7 @@ class MainSearch extends Component {
 		body: JSON.stringify({
 			userId: this.props.userId,
 			keyword: this.state.keyword,
-			category: this.state.userId
+			category: this.state.category
 		
 		})
 		})
@@ -47,7 +48,7 @@ class MainSearch extends Component {
 		//alert(`You chose the ${this.state.category} `);
 	// }
 	
-	//setKeyword(event) { this.setState({keyword: event.target.value}); }
+	setKeyword(event) { this.setState({keyword: event.target.value}); }
 
 	render() {
 		return (
@@ -59,6 +60,8 @@ class MainSearch extends Component {
 					className ="form-control" 
 					id="keyword" 
 					name="keyword"
+					value={this.state.keyword}
+					onChange={this.setKeyword}
 					></input><br></br>
 				<button value="SearchButton" onClick = {this.handleClick} >Search</button>					
 				<button  onClick = {this.props.handlerMSearch}>Back to App</button>

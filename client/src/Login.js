@@ -10,6 +10,8 @@ class Login extends Component {
 			userId: "None"
 
 		};
+		this.setUsername = this.setUsername.bind(this);
+		this.setPassword = this.setPassword.bind(this);
 	}
 
 	handleClick = () => {
@@ -19,8 +21,8 @@ class Login extends Component {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				username: 'username',
-				password: 'password'
+				username: this.state.username,
+				password: this.state.password
 			
 			})
 		})
@@ -35,14 +37,32 @@ class Login extends Component {
 		//this.props.handlerLgRg();
 		//this.props.handlerUserId(101);
 	}
+	
+	setUsername(event) { this.setState({username: event.target.value}); }
+	
+	setPassword(event) { this.setState({password: event.target.value}); }
 
 	render() {
 		return (
 			<div className="Login">
 				<label>Username:</label>
-				<input type="text" className ="form-control" id="username" name="username"></input><br></br>
+				<input 
+					type="text" 
+					className ="form-control" 
+					id="username" 
+					name="username"
+					value={this.state.username}
+					onChange={this.setUsername}
+				></input><br></br>
 				<label>Password:</label>
-				<input type="password" className ="form-control" id="password" name="password"></input><br></br>
+				<input 
+					type="password" 
+					className ="form-control" 
+					id="password" 
+					name="password"
+					value={this.state.password}
+					onChange={this.setPassword}
+				></input><br></br>
 				<button  value="Login"  onClick = {this.handleClick} >Login</button>
 				<button  onClick = {this.props.handlerLgRg} >Back to App</button>
 			</div>
