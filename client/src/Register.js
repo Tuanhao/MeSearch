@@ -13,8 +13,7 @@ class Register extends Component {
 			books: "None",
 			music: "None",
 			games: "None",
-			television: "None",
-			status: 'None'
+			television: "None"
 		}
 		this.setUsername = this.setUsername.bind(this);
 		this.setPassword = this.setPassword.bind(this);

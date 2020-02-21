@@ -7,9 +7,8 @@ import SearchResults from './SearchResults.js';
 class App extends Component {
 	// Initialize state
 	state = { 
-		passwords: [1, 2, 3],
 		userId: "None",
-		status: 'None'
+		results: []
 	}
 
 	constructor(props) {
@@ -17,42 +16,44 @@ class App extends Component {
 
 		this.handlerLgRg = this.handlerLgRg.bind(this)
 		this.handlerMSearch = this.handlerMSearch.bind(this)
+		this.handlerRSearch = this.handlerRSearch.bind(this)
 		this.handlerUserId = this.handlerUserId.bind(this)
+		this.handlerResults = this.handlerResults.bind(this)
 	}
 
 	handlerLgRg() { this.setState({LoginDone: true}) }
 
 	handlerMSearch() { this.setState({MSearchDone: true}) }
 	
+	handlerRSearch() { 
+		this.setState({MSearchDone: false})
+		this.setState({LoginDone: true})
+	}
+	
 	handlerUserId(value) { this.setState({userId: value}) }
 	
-	update = userId => {
-       this.setState({userId:userId})// or with es6 this.setState({name})
-    }
-
-	// Fetch passwords after first mount
-	componentDidMount() {
-		this.getPasswords();
-	}
-
-	getPasswords = () => {
-		// Get the passwords and store them in state
-		//fetch('/api/passwords')
-		//.then(res => res.json())
-		//.then(passwords => this.setState({ passwords }));
-	}
+	handlerResults(value) { this.setState({results: value}) }
 
 	render() {
-		const { passwords } = this.state;
-
 		return (
 			<div className="App">
-				{!this.state.LoginDone && <LoginAndRegistration handlerLgRg = {this.handlerLgRg} handlerUserId = {this.handlerUserId} />}
-				{(this.state.LoginDone && !this.state.MSearchDone) && <MainSearch handlerMSearch = {this.handlerMSearch} userId = {this.state.userId} />}
-				{this.state.MSearchDone && <SearchResults />}
+			{this.state.userId}
+				{!this.state.LoginDone && <LoginAndRegistration 
+					handlerLgRg = {this.handlerLgRg} 
+					handlerUserId = {this.handlerUserId} 
+				/>}
+				{(this.state.LoginDone && !this.state.MSearchDone) && <MainSearch 
+					handlerMSearch = {this.handlerMSearch} 
+					userId = {this.state.userId}
+					handlerResults = {this.handlerResults}
+				/>}
+				{this.state.MSearchDone && <SearchResults
+					handlerRSearch = {this.handlerRSearch}
+					results = {this.state.results} 
+				/>}
 			</div>
 		)
 	}
 }
-// { passwords }
+
 export default App;

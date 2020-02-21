@@ -3,16 +3,15 @@ import React, { Component } from 'react';
 //import Register from './Register.js';
 
 class MainSearch extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = { 
-			userId: 'None',
-			keyword: 'None',
+		//	userId: 'None',
+			keyword: null,
 			category: 'None'
 		};
 		this.setCategory = this.setCategory.bind(this);
 		this.setKeyword = this.setKeyword.bind(this);
-		//this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 
@@ -33,27 +32,20 @@ class MainSearch extends Component {
 			return response.json()
 		})
 		.then((myJson) => {
-			console.log(myJson)
+			console.log(myJson.filteredResults)
+			this.props.handlerResults(myJson.filteredResults)
 		});
 		//this.props.handlerMSearch();
-		//this.handleSubmit();
+		//this.props.handlerResults([{title: "onet", url: "url1", description: "des1"}, {title: "one2", url: "url2", description: "des3"}])
 	}
 	
 	setCategory(event) { this.setState({category: event.target.value}); }
-
-	
-	// handleSubmit(event) {
-		// event.preventDefault();
-    
-		//alert(`You chose the ${this.state.category} `);
-	// }
 	
 	setKeyword(event) { this.setState({keyword: event.target.value}); }
 
 	render() {
 		return (
 			<div className="MainSearch">
-			{this.state.keyword}
 				<h1>MeSearch</h1>
 				<input 
 					type="text" 
@@ -114,11 +106,4 @@ class MainSearch extends Component {
 	}
 }
 
-
-//value={this.state.keyword}
-//onChange={this.setKeyword}
-//onClick = {this.handleClick}
-			// <form onSubmit={this.handleSubmit}>
-	// <button type="submit" className="submit-button">Make your choice</button>
-			// </form>
 export default MainSearch;

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './Login.css';
 
 class Login extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = { 
 			username: "None",
 			password: "None",
