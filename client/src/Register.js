@@ -74,24 +74,24 @@ class Register extends Component {
 		return (
 			<div className="Register">
 				<label>Username:</label>
-				<input type="text" class ="form-control" id="username" name="username" value={this.state.value} onChange= {this.setUsername}></input><br></br>
+				<input type="text" className ="form-control" id="username" name="username" value={this.state.value} onChange= {this.setUsername}></input><br></br>
 				<label>Password:</label>
-				<input type="password" class ="form-control" id="password" name="password" value={this.state.value} onChange= {this.setPassword}></input><br></br>
+				<input type="password" className ="form-control" id="password" name="password" value={this.state.value} onChange= {this.setPassword}></input><br></br>
 				<label>Repeat Password:</label>
-				<input type="password" class ="form-control" id="rpassword" name="rpassword"></input><br></br><br></br>
+				<input type="password" className ="form-control" id="rpassword" name="rpassword"></input><br></br><br></br>
 				<h4>Tell US What You Like</h4><br></br>
 				<label>Sports:</label>
-				<input type="text" class ="form-control" id="Sports" name="Sports" value={this.state.value} onChange= {this.setSport}></input><br></br>
+				<input type="text" className ="form-control" id="Sports" name="Sports" value={this.state.value} onChange= {this.setSport}></input><br></br>
 				<label>Movies:</label>
-				<input type="text" class ="form-control" id="Movies" name="Movies" value={this.state.value} onChange= {this.setMovie}></input><br></br>
+				<input type="text" className ="form-control" id="Movies" name="Movies" value={this.state.value} onChange= {this.setMovie}></input><br></br>
 				<label>Books:</label>
-				<input type="text" class ="form-control" id="Books" name="Books" value={this.state.value} onChange= {this.setBook}></input><br></br>
+				<input type="text" className ="form-control" id="Books" name="Books" value={this.state.value} onChange= {this.setBook}></input><br></br>
 				<label>Games:</label>
-				<input type="text" class ="form-control" id="Games" name="Games" value={this.state.value} onChange= {this.setGame}></input><br></br>
+				<input type="text" className ="form-control" id="Games" name="Games" value={this.state.value} onChange= {this.setGame}></input><br></br>
 				<label>Music:</label>
-				<input type="text" class ="form-control" id="Music" name="Music" value={this.state.value} onChange= {this.setMusic}></input><br></br>
+				<input type="text" className ="form-control" id="Music" name="Music" value={this.state.value} onChange= {this.setMusic}></input><br></br>
 				<label>TV Shows:</label>
-				<input type="text" class ="form-control" id="TVShows" name="TVShows" value={this.state.value} onChange= {this.setTVShow}></input><br></br>
+				<input type="text" className ="form-control" id="television" name="television" value={this.state.value} onChange= {this.setTVShow}></input><br></br>
 				<button value="Register" onClick = {this.handleClick}>Register</button>		
 				<button  onClick = {this.props.handlerLgRg} >Back to App</button>
 			</div>

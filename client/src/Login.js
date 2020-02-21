@@ -4,12 +4,31 @@ import './Login.css';
 class Login extends Component {
 	constructor() {
 		super();
-		this.state = { Done: false };
+		this.state = { 
+			username: "None",
+			password: "None"
+
+		};
 	}
 
 	handleClick = () => {
-		fetch('/api/login')
-		.then(res => console.log('res', res))
+		fetch('/api/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				username: 'username',
+				password: 'password'
+			
+			})
+		})
+		.then((response) => {
+			return response.json()
+		})
+		.then((myJson) => {
+			console.log(myJson)
+		});
 		//this.props.handlerLgRg();
 	}
 
@@ -17,9 +36,9 @@ class Login extends Component {
 		return (
 			<div className="Login">
 				<label>Username:</label>
-				<input type="text" class ="form-control" id="username" name="username"></input><br></br>
+				<input type="text" className ="form-control" id="username" name="username"></input><br></br>
 				<label>Password:</label>
-				<input type="password" class ="form-control" id="password" name="password"></input><br></br>
+				<input type="password" className ="form-control" id="password" name="password"></input><br></br>
 				<button  value="Login"  onClick = {this.handleClick} >Login</button>
 				<button  onClick = {this.props.handlerLgRg} >Back to App</button>
 			</div>

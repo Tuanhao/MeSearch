@@ -13,7 +13,7 @@ class SearchResults extends Component {
 		return (
 			<div className="SearchResults">
 				<h3>MeSearch</h3>
-				<input type="text" class ="form-control" id="searchBar" name="searchBar"></input>
+				<input type="text" className ="form-control" id="searchBar" name="searchBar"></input>
 				<button value="SearchButton">Search</button>
 				<hr></hr>
 				<div className="results">

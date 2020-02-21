@@ -15,7 +15,7 @@ class MainSearch extends Component {
 		return (
 			<div className="MainSearch">
 				<h1>MeSearch</h1>
-				<input type="text" class ="form-control" id="searchBar" name="searchBar"></input><br></br>
+				<input type="text" className ="form-control" id="searchBar" name="searchBar"></input><br></br>
 				<button value="SearchButton">Search</button>					
 				<button  onClick = {this.props.handlerMSearch}>Back to App</button>
 			</div>
