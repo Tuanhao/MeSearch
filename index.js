@@ -98,8 +98,8 @@ app.post('/api/search', (req, res) => {
     webSearchApi.search(searchKeyword).then((result) => {
       return result.body.value
     }).then((searchResults) => {
-      const filteredResults = searchFilter(searchResults, filterKeywords)
-      res.status(200).json(filteredResults)
+      const filteredResults, filterSuccess = searchFilter(connection, searchResults, filterKeywords, userId)
+      res.status(200).json({filteredResults, filterSuccess})
     }).catch((err) => {
       res.status(500).json({
         msg: 'Fail to perform search, please try again'
