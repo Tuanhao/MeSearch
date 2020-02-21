@@ -20,8 +20,7 @@ app.use(express.json())
 
 // Put all API endpoints under '/api'
 app.post('/api/login', (req, res) => {
-  const username = 'user'
-  const password = 'password'
+  const {username, password} = req.body
   let loginSQL = `SELECT * FROM user_account WHERE username='${username}' AND password='${password}'`
  
   connection.query(loginSQL, (err, data) => {
@@ -31,14 +30,14 @@ app.post('/api/login', (req, res) => {
         msg: 'Fail to login'
       })
     } else {
-      res.status(200).json(data[0].userId)
+      res.status(200).json(data[0])
     }
   })
 })
 
 app.post('/api/register', (req, res) => {
   const {username, password, sports, books, games, movies, music, television} = req.body;
-  let userId = 0;
+  let userId
 
   let registerAccSQL = 
   `INSERT INTO user_account(username, password)
@@ -77,7 +76,7 @@ app.post('/api/register', (req, res) => {
   
 });
 
-app.get('/api/search', (req, res) => {
+app.post('/api/search', (req, res) => {
   //TODO: check credentials
 
   let userId = 20
@@ -97,14 +96,13 @@ app.get('/api/search', (req, res) => {
     err? console.log(err): filterKeywords = data[0][`${category}`].split(',');
     
     webSearchApi.search(searchKeyword).then((result) => {
-      console.log(result.body.value);
       return result.body.value
     }).then((searchResults) => {
       const filteredResults = searchFilter(searchResults, filterKeywords)
       res.status(200).json(filteredResults)
     }).catch((err) => {
       res.status(500).json({
-        msg: 'Failt to perform search, please try again'
+        msg: 'Fail to perform search, please try again'
       })
     })
   })
