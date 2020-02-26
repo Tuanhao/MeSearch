@@ -4,6 +4,7 @@ const mysql = require('mysql')
 const webSearchApi = require('./api/webSearchAPI')
 const config = require('./utility/mySQLconfig')
 const searchFilter = require('./utility/searchFilter')
+const bcrypt = require('bcrypt')
 
 const app = express();
 
@@ -19,65 +20,112 @@ app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(express.json())
 
 // Put all API endpoints under '/api'
+
+/**
+ * Login end point - with bcrypt authentication
+ * POST
+ * 
+ * Request body: {username, password}
+ * RESPONSE:
+ * 500: Dabase query failed
+ * 401: For not incorrect info
+ * 200: Success
+ */
 app.post('/api/login', (req, res) => {
   const {username, password} = req.body
-  let loginSQL = `SELECT * FROM user_account WHERE username='${username}' AND password='${password}'`
+  let loginSQL = `SELECT * FROM user_account WHERE username='${username}'`
  
   connection.query(loginSQL, (err, data) => {
     if (err) {
       console.log(err)
-      res.status(401).json({
-        msg: 'Fail to login'
+      res.status(500).json({
+        msg: 'Database query failed'
       })
     } else {
-      res.status(200).json(data[0])
+      bcrypt.compare(password, data[0].password, function(err, result) {
+        if (result) {
+          res.status(200).json({
+            userId: data[0].userId
+          })
+        } else {
+          res.status(401).json({
+            msg: 'Authentication failed'
+          })
+        }
+      });
     }
   })
 })
 
+/**
+ * Register an account - encrypt password before putting into DB
+ * POST
+ * 
+ * Request body: {username, password, sports, books, games, movies, music, television}
+ * RESPONSE:
+ * 500: User name duplicated
+ * 500: Databse failed to insert info
+ * 200: Success
+ */
 app.post('/api/register', (req, res) => {
   const {username, password, sports, books, games, movies, music, television} = req.body;
   let userId
+  const saltRounds = 3;
 
-  let registerAccSQL = 
-  `INSERT INTO user_account(username, password)
-  VALUES('${username}', '${password}')`
- 
-  connection.query(registerAccSQL, (err, data) => {
-    if(err) {
-      if (err.errno == 1062) res.status(500).json({
-        status: 'ERROR',
-        userId: 0,
-        msg: 'username duplicated'
-      })
+  bcrypt.hash(password, saltRounds, (err, hash) => {
+    if (err) {
+      console.log(err);
     } else {
-      userId = data.insertId
-      let registerProfileSQL =
-      `INSERT INTO user_profile(userId, sports, books, games, movies, music, television)
-      VALUES(${userId}, '${sports}', '${books}', '${games}', '${movies}', '${music}', '${television}')`
-
-      connection.query(registerProfileSQL, (err, data) => {
+      let registerAccSQL = 
+      `INSERT INTO user_account(username, password)
+      VALUES('${username}', '${hash}')`
+    
+      connection.query(registerAccSQL, (err, data) => {
         if(err) {
-          res.status(500).json({
+          if (err.errno == 1062) res.status(500).json({
             status: 'ERROR',
-            userId,
-            msg: 'Fail to register',
-            err
-          });
+            userId: 0,
+            msg: 'username duplicated'
+          })
         } else {
-          res.status(200).json({
-            status: 'OK',
-            userId
-          });
-        }
+          userId = data.insertId
+          let registerProfileSQL =
+          `INSERT INTO user_profile(userId, sports, books, games, movies, music, television)
+          VALUES(${userId}, '${sports}', '${books}', '${games}', '${movies}', '${music}', '${television}')`
+
+          connection.query(registerProfileSQL, (err, data) => {
+            if(err) {
+              res.status(500).json({
+                status: 'ERROR',
+                userId,
+                msg: 'Database failed to insert info',
+                err
+              });
+            } else {
+              res.status(200).json({
+                status: 'OK',
+                userId
+              });
+            }
+          })
+        } 
       })
-    } 
+    }
   })
+  
   
 });
 
+/**
+ * Perform a search
+ * POST
+ * 
+ * Request body: {userId, category, keyword}
+ * RESPONSE:
+ * 500: Fail to perform search (search engine API is not responding)
+ * 200: Success
+ */
 app.post('/api/search', (req, res) => {
-  //TODO: check credentials
 
   let userId = 20
   let category = 'sports'
