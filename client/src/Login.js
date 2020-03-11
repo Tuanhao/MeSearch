@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import './Login.css';
+import './css/Login.css';
 
 class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
-			username: null,
-			password: null,
-			userId: null
+			username: '',
+			password: '',
+			userId: ''
 
 		};
 		this.setUsername = this.setUsername.bind(this);
@@ -35,7 +35,6 @@ class Login extends Component {
 			this.props.handlerUserId(this.state.userId)
 		});
 		//this.props.handlerLgRg();
-		//this.props.handlerUserId(101);
 	}
 	
 	setUsername(event) { this.setState({username: event.target.value}); }

@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
-//import './MainSearch.css';
-//import Register from './Register.js';
+//import './css/MainSearch.css';
+import './css/font-awesome.css';
+import Load from './Load.js';
 
 class MainSearch extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
-			keyword: null,
-			category: null
+			keyword: '',
+			category: '',
+			loading: false
 		};
 		this.setCategory = this.setCategory.bind(this);
 		this.setKeyword = this.setKeyword.bind(this);
 	}
 
 
+
 	handleClick = () => {
+		this.setState({loading: true});		
+
 		fetch('/api/search', {
 		method: 'POST',
 		headers: {
@@ -32,10 +37,14 @@ class MainSearch extends Component {
 		})
 		.then((myJson) => {
 			console.log(myJson.filteredResults)
-			this.props.handlerResults(myJson.filteredResults)
+			//this.props.handlerResults(myJson.filteredResults)
+			
 		});
-		this.props.handlerMSearch();
-		//this.props.handlerResults([{title: "onet", url: "url1", description: "des1"}, {title: "one2", url: "url2", description: "des3"}])
+		
+		this.props.handlerResults([{title: "onet", url: "http://www.google.ca", description: "des1"}, {title: "one2", url: "url2", description: "des3"}]);
+		setTimeout(()=>{this.props.handlerMSearch()} , 2500); 
+		//this.props.handlerMSearch();
+		
 	}
 	
 	setCategory(event) { this.setState({category: event.target.value}); }
@@ -48,15 +57,19 @@ class MainSearch extends Component {
 				<h1>MeSearch</h1>
 				<input 
 					type="text" 
-					className ="form-control" 
+					className ="" 
 					id="keyword" 
 					name="keyword"
 					value={this.state.keyword}
 					onChange={this.setKeyword}
 					></input><br></br>
-				<button value="SearchButton" onClick = {this.handleClick} >Search</button><br /><br />			
+				<button value="SearchButton" onClick = {this.handleClick} disabled={this.state.loading}>
+					{this.state.loading && <i className="fa fa-refresh fa-spin" style={{ marginRight: "5px" }} />}
+					{!this.state.loading && <span>Search</span>}
+					{this.state.loading && <span>Searching for Results</span>}
+				</button><br /><br />			
 				<div>
-					<label>Pick a Category</label> <br />
+					<label>Pick a Category</label> <br />				
 					<label>
 					<input 
 						type="radio" 
@@ -100,10 +113,11 @@ class MainSearch extends Component {
 						onChange={this.setCategory} 
 					/>TV Shows</label>
 				</div>
+				{this.state.loading && <Load />}
 			</div>
 		); 
 	}
 }
 
-//<button  onClick = {this.props.handlerMSearch}>Next</button>
+
 export default MainSearch;

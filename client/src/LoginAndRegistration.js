@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import './LoginAndRegistration.css';
+//import './css/LoginAndRegistration.css';
 import Login from './Login.js';
 import Register from './Register.js';
 
@@ -9,7 +9,7 @@ class LoginAndRegistration extends Component {
 		this.state = { 
 			isShowLG: false,
 			isShowRG: false,
-			userId: null
+			userId: ''
 		}
 		this.handleClickLG = this.handleClickLG.bind(this);
 		this.handleClickRG = this.handleClickRG.bind(this);

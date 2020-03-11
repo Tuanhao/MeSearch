@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import './Register.css';
-//import './bootstrap.css';
+import './css/Register.css';
+//import './css/bootstrap.css';
 
 class Register extends Component {
 	constructor() {
 		super();
 		this.state = { 
-			password: null,
-			rpassword: null,
-			username: null,
-			sports: null,
-			movies: null,
-			books: null,
-			music: null,
-			games: null,
-			television: null
+			password: '',
+			rpassword: '',
+			username: '',
+			sports: '',
+			movies: '',
+			books: '',
+			music: '',
+			games: '',
+			television: ''
 		}
 		this.setUsername = this.setUsername.bind(this);
 		this.setPassword = this.setPassword.bind(this);

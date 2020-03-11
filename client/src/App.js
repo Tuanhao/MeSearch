@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
+import './css/App.css';
 import LoginAndRegistration from './LoginAndRegistration.js';
 import MainSearch from './MainSearch.js';
 import SearchResults from './SearchResults.js';
+//import './css/bootstrap.css';
 
 class App extends Component {
 	// Initialize state
 	state = { 
-		userId: null,
+		userId: '',
 		results: []
 	}
 
@@ -45,10 +46,13 @@ class App extends Component {
 					handlerMSearch = {this.handlerMSearch} 
 					userId = {this.state.userId}
 					handlerResults = {this.handlerResults}
+					
 				/>}
 				{this.state.MSearchDone && <SearchResults
 					handlerRSearch = {this.handlerRSearch}
 					results = {this.state.results} 
+					
+					
 				/>}
 			</div>
 		)
