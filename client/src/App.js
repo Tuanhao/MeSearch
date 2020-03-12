@@ -9,7 +9,8 @@ class App extends Component {
 	// Initialize state
 	state = { 
 		userId: '',
-		results: []
+		results: [],
+		//MSearchDone : false
 	}
 
 	constructor(props) {
@@ -37,26 +38,55 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
-				{!this.state.LoginDone && <LoginAndRegistration 
-					handlerLgRg = {this.handlerLgRg} 
-					handlerUserId = {this.handlerUserId} 
-				/>}
-				{(this.state.LoginDone && !this.state.MSearchDone) && <MainSearch 
-					handlerMSearch = {this.handlerMSearch} 
-					userId = {this.state.userId}
-					handlerResults = {this.handlerResults}
-					
-				/>}
-				{this.state.MSearchDone && <SearchResults
-					handlerRSearch = {this.handlerRSearch}
-					results = {this.state.results} 
-					
-					
-				/>}
-			</div>
+					<div className="App">
+						{!this.state.LoginDone && <LoginAndRegistration 
+							handlerLgRg = {this.handlerLgRg} 
+							handlerUserId = {this.handlerUserId} 
+						/>}
+						{(this.state.LoginDone && !this.state.MSearchDone) && <MainSearch 
+							handlerMSearch = {this.handlerMSearch} 
+							userId = {this.state.userId}
+							handlerResults = {this.handlerResults}
+							
+						/>}
+						{this.state.MSearchDone && <SearchResults
+							handlerRSearch = {this.handlerRSearch}
+							results = {this.state.results} 
+							
+							
+						/>}
+					</div>
 		)
 	}
 }
+
+
+			// <html>
+				// <head>
+					// <title>MeSearch</title>
+					// <script type="text/javascript" src="js/jquery.js"></script>
+					// <script type="text/javascript" src="js/qrcode.js"></script>
+				// </head>
+				// <body>
+					// <div className="App">
+						// {!this.state.LoginDone && <LoginAndRegistration 
+							// handlerLgRg = {this.handlerLgRg} 
+							// handlerUserId = {this.handlerUserId} 
+						// />}
+						// {(this.state.LoginDone && !this.state.MSearchDone) && <MainSearch 
+							// handlerMSearch = {this.handlerMSearch} 
+							// userId = {this.state.userId}
+							// handlerResults = {this.handlerResults}
+							
+						// />}
+						// {this.state.MSearchDone && <SearchResults
+							// handlerRSearch = {this.handlerRSearch}
+							// results = {this.state.results} 
+							
+							
+						// />}
+					// </div>
+				// </body>
+			// </html>
 
 export default App;
