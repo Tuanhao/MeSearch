@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 //import './css/SearchResults.css';
+import './js/qrcode.js';
+//import './js/jquery.js';
+//import './js/bootstrap.js';
 
 class SearchResults extends Component {
 	constructor(props) {
@@ -19,13 +22,25 @@ class SearchResults extends Component {
 			<tr>
 				<a href={res[i].url}>{res[i].title}</a><br />
 				<p> {res[i].description} </p>
-				//<button id="view" onclick="generate();">View QR Code</button>
-				//<div id="qrResult" style="height: 100px;width: 100px"></div>
+				<button id={i} onClick= {this.qrcode.makeCode(res[i].url)} >View QR Code</button>
+				<div id={res[i].title}></div>
+				
+				<script type="text/javascript">
+				var qrcode=new QRCode(document.getElementById({res[i].title}));
+				
+
+				
+				</script>
+				
 			</tr>
 		  )
 		}
+		
 		return tab
   }
+  
+  //<div id="qrResult" style="height: 100px;width: 100px"></div>
+  
    
 	render() {
 		const result = this.createResults()
@@ -45,10 +60,6 @@ class SearchResults extends Component {
 		); 
 	}
 }
-
-
-// <div id="qrResult" style="height: 100px;width: 100px">
-// </div>
 
 // <script type="text/javascript">
 	// var qrcode=new QRCode(document.getElementById('qrResult'),{
