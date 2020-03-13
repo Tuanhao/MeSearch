@@ -123,8 +123,8 @@ class Register extends Component {
 				<input type="password" className ="form-control" id="password" name="password" value={this.state.password} onChange= {this.setPassword}></input><br></br>
 				<label>Repeat Password:</label>
 				<input type="password" className ="form-control" id="rpassword" name="rpassword" value={this.state.rpassword} onChange= {this.setRPassword}></input><br></br><br></br>
-				<h2>Tell US What You Like</h2><br></br>
-				<p id="listInfo"> Please have atleast 3 items in each list. (Items are separated by ",")</p><br />
+				<h3>Tell US What You Like</h3><br></br>
+				<p id="listInfo"> Please have at least 3 items in each list. (Items should be separated by ",")</p><br />
 				<label>Sports:</label>
 				<input type="text" className ="form-control" id="Sports" name="Sports" value={this.state.sports} onChange= {this.setSport}></input><br></br>
 				<label>Movies:</label>

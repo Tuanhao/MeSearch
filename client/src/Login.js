@@ -34,7 +34,7 @@ class Login extends Component {
 			this.setState({userId: myJson.userId}) 
 			this.props.handlerUserId(this.state.userId)
 		});
-		//this.props.handlerLgRg();
+		this.props.handlerLgRg();
 	}
 	
 	setUsername(event) { this.setState({username: event.target.value}); }
@@ -63,7 +63,6 @@ class Login extends Component {
 					onChange={this.setPassword}
 				></input><br></br>
 				<button  value="Login"  onClick = {this.handleClick} >Login</button>
-				<button  onClick = {this.props.handlerLgRg} >Next</button>
 			</div>
 		); 
 	}

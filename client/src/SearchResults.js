@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 //import './css/SearchResults.css';
 //import './js/bootstrap.js';
 import {render} from 'react-dom'
-import QrCode from 'react.qrcode.generator';
-import Load from './Load.js';
-
+import QrCode from 'qrcode.react';
 
 class SearchResults extends Component {
 	constructor(props) {
@@ -40,28 +38,16 @@ class SearchResults extends Component {
 	}
   
 	setQRCode(value) {
-		//let show = false
-		
-		// if(this.state.ShowQR) {
-			// this.setState({ShowQR: false});
-		// } else {
-			 //this.setState({ShowQR: true});
-		// }
 		this.on();
-		
+
 		this.setState({
 			QRResult: value
 		});
 	  
 	}
-	off() {
-		this.setState({ShowQR: false});
-		//document.body.removeChild('QRCode');
-	}
-	on() {
-		this.setState({ShowQR: true});
-		//document.body.appendChild('QRCode');
-	}
+	off() { this.setState({ShowQR: false}); }
+	
+	on() { this.setState({ShowQR: true}); }
 	
 	QRGenerater() {
 		let result = this.createResults()
@@ -77,15 +63,13 @@ class SearchResults extends Component {
   
     
 	render() {
-		//var QRCode = require('qrcode.react');
 		const result = this.createResults()
 		const showqr = this.state.ShowQR
 		const qrresult = this.state.QRResult
-		//const QR = this.QRGenerater()
 		
 		return (		
 			<div className="SearchResults">
-				<h1>MeSearch</h1>
+				<h1><span id="me">Me</span>Search</h1>
 				<button value="BackButton" onClick = {this.props.handlerRSearch}>Back to Search</button>
 				<hr></hr>
 				<div className="results">
@@ -94,12 +78,9 @@ class SearchResults extends Component {
 					</table>
 					{showqr && <div ><QrCode id='QRCode' size={290} value={qrresult}/></div>}
 				</div>
-				{this.state.test && <Load />}
 			</div>
 		); 
 	}
 }
-//<QrCode id='QRCode' size={290} value={qrresult}/>}
 
-//onEscapeOutside={}
 export default SearchResults;

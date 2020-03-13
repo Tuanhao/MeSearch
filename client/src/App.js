@@ -3,6 +3,7 @@ import './css/App.css';
 import LoginAndRegistration from './LoginAndRegistration.js';
 import MainSearch from './MainSearch.js';
 import SearchResults from './SearchResults.js';
+//import Setting from './Setting.js';
 //import './css/bootstrap.css';
 
 class App extends Component {
@@ -43,6 +44,7 @@ class App extends Component {
 			<html>
 				<head>
 					<title>MeSearch</title>
+					<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 				</head>
 				<body>
 					<div className="App">
@@ -59,11 +61,11 @@ class App extends Component {
 						{this.state.MSearchDone && <SearchResults
 							handlerRSearch = {this.handlerRSearch}
 							results = {this.state.results} 
-							
-							
 						/>}
 					</div>
 				</body>
+				<foot>
+				</foot>
 			</html>
 		)
 	}

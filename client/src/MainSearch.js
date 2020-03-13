@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 //import './css/MainSearch.css';
-import './css/font-awesome.css';
-import Load from './Load.js';
+//import './css/font-awesome.css';
 
 class MainSearch extends Component {
 	constructor(props) {
@@ -37,11 +36,11 @@ class MainSearch extends Component {
 		})
 		.then((myJson) => {
 			console.log(myJson.filteredResults)
-			//this.props.handlerResults(myJson.filteredResults)
+			this.props.handlerResults(myJson.filteredResults)
 			
 		});
 		
-		this.props.handlerResults([{title: "onet", url: "http://www.google.ca", description: "des1"}, {title: "one2", url: "url2", description: "des3"}]);
+		//this.props.handlerResults([{title: "onet", url: "http://www.google.ca", description: "des1"}, {title: "one2", url: "url2", description: "des3"}]);
 		setTimeout(()=>{this.props.handlerMSearch()} , 2500); 
 		//this.props.handlerMSearch();
 		
@@ -54,16 +53,18 @@ class MainSearch extends Component {
 	render() {
 		return (
 			<div className="MainSearch">
-				<h1>MeSearch</h1>
+				<h1><span id="me">Me</span>Search</h1>
 				<input 
 					type="text" 
-					className ="" 
+					className ="form-control2" 
 					id="keyword" 
 					name="keyword"
+					placeholder='Search...'
 					value={this.state.keyword}
 					onChange={this.setKeyword}
 					></input><br></br>
 				<button value="SearchButton" onClick = {this.handleClick} disabled={this.state.loading} >
+					{!this.state.loading &&<i className="fa fa-search"   style={{ marginRight: "5px"}} ></i>}
 					{this.state.loading && <i className="fa fa-refresh fa-spin" style={{ marginRight: "5px" }} />}
 					{!this.state.loading && <span>Search</span>}
 					{this.state.loading && <span>Searching for Results</span>}
@@ -113,9 +114,6 @@ class MainSearch extends Component {
 						onChange={this.setCategory} 
 					/>TV Shows</label>
 				</div>
-				<i className="fa fa-refresh fa-spin" style={{ marginRight: "5px" }} />
-				<span></span>
-				{this.state.loading && <Load />}
 			</div>
 		); 
 	}
