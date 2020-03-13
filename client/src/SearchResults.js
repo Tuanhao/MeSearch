@@ -1,49 +1,87 @@
 import React, { Component } from 'react';
 //import './css/SearchResults.css';
-import './js/qrcode.js';
-//import './js/jquery.js';
 //import './js/bootstrap.js';
+import {render} from 'react-dom'
+import QrCode from 'react.qrcode.generator';
+import Load from './Load.js';
+
 
 class SearchResults extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
 			results: this.props.results,
-			test: true
+			ShowQR: false,
+			QRResult: "None",
+			test: false
 		};
+		this.off = this.off.bind(this);
+		this.on = this.on.bind(this);
 	}
-	
+		
 	createResults() {
 		let res = this.state.results;
 		let tab = []
 
+		//setTimeout(()=>{this.setState({test: true})} , 2500);
+		//this.setState({test: true});
 		for (let i = 0; i < res.length ; i++) {
 		  tab.push(
 			<tr>
 				<a href={res[i].url}>{res[i].title}</a><br />
 				<p> {res[i].description} </p>
-				<button id={i} onClick= {this.qrcode.makeCode(res[i].url)} >View QR Code</button>
-				<div id={res[i].title}></div>
-				
-				<script type="text/javascript">
-				var qrcode=new QRCode(document.getElementById({res[i].title}));
-				
-
-				
-				</script>
-				
+				<button value="BackButton" onClick = { () => this.setQRCode( res[i].url )}>Generate QRCode</button>
+				<button value="BackButton" onClick = {() => this.off()}>Off</button>
 			</tr>
 		  )
 		}
 		
 		return tab
-  }
+	}
   
-  //<div id="qrResult" style="height: 100px;width: 100px"></div>
+	setQRCode(value) {
+		//let show = false
+		
+		// if(this.state.ShowQR) {
+			// this.setState({ShowQR: false});
+		// } else {
+			 //this.setState({ShowQR: true});
+		// }
+		this.on();
+		
+		this.setState({
+			QRResult: value
+		});
+	  
+	}
+	off() {
+		this.setState({ShowQR: false});
+		//document.body.removeChild('QRCode');
+	}
+	on() {
+		this.setState({ShowQR: true});
+		//document.body.appendChild('QRCode');
+	}
+	
+	QRGenerater() {
+		let result = this.createResults()
+		let qrresult = this.state.QRResult
+		let showqr = this.state.ShowQR
+	
+		return (
+			<div>
+				<QrCode id='QRCode' size={290} value={qrresult}/>
+			</div>
+		);
+	}
   
-   
+    
 	render() {
+		//var QRCode = require('qrcode.react');
 		const result = this.createResults()
+		const showqr = this.state.ShowQR
+		const qrresult = this.state.QRResult
+		//const QR = this.QRGenerater()
 		
 		return (		
 			<div className="SearchResults">
@@ -54,32 +92,14 @@ class SearchResults extends Component {
 					<table>
 						{ result }
 					</table>
-					{this.state.test && <p>hhhh</p>}
+					{showqr && <div ><QrCode id='QRCode' size={290} value={qrresult}/></div>}
 				</div>
+				{this.state.test && <Load />}
 			</div>
 		); 
 	}
 }
+//<QrCode id='QRCode' size={290} value={qrresult}/>}
 
-// <script type="text/javascript">
-	// var qrcode=new QRCode(document.getElementById('qrResult'),{
-		// width:200,
-		// height:200
-	// });
-
-// function generate(){
-	// var message=document.getElementById('qr');
-	// var buttton = document.getElementById('view');
-	// if(!message.value){
-		// alert("Input a text");
-		// message.focus();
-		// return;
-	// }
-
-	// qrcode.makeCode(message.value);
-// }
-
-// </script>
-
-
+//onEscapeOutside={}
 export default SearchResults;

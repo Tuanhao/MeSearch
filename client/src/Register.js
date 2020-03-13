@@ -28,6 +28,8 @@ class Register extends Component {
 		
 	}
 
+	
+
 	setSport(event) { this.setState({sports: event.target.value}) }
 
 	setMusic(event) { this.setState({music: event.target.value}) }
@@ -42,13 +44,45 @@ class Register extends Component {
 	
 	setUsername(event) { this.setState({username: event.target.value}) }
 	
-	setPassword(event) { this.setState({password: event.target.value}) }
+	setPassword(event) { 
+		this.setState({password: event.target.value}) 
+	}
 	
-	setRPassword(event) { this.setState({rpassword: event.target.value}) }
+	setRPassword(event) { 
+		this.setState({rpassword: event.target.value}) 
+	}
 	
-	
+	settingCheck(list) {
+		//let list = event.target.value;
+		let count = 0;
+		
+		for(let i =0;i <list.length; i++) {
+			if(list.charAt(i) == ',') {
+				count = count + 1;
+			} 
+		}
+		
+		console.log(count);
+		
+		if(count < 2) {
+			alert('Sorry, but you must have 3 or more items in your list. Items are separated by ","');
+			return false;
+		}
+		return true;
+	}
 
 	handleClick = () => {
+		let overallTrue = false;
+		overallTrue = this.settingCheck(this.state.sports);
+		overallTrue = this.settingCheck(this.state.movies);
+		overallTrue = this.settingCheck(this.state.books);
+		overallTrue = this.settingCheck(this.state.music);
+		overallTrue = this.settingCheck(this.state.games);
+		overallTrue = this.settingCheck(this.state.television);
+		if (!overallTrue) {
+			return;
+		}
+		
 		if (this.state.password == this.state.rpassword) {
 			fetch('/api/register', {
 				method: 'POST',
@@ -89,7 +123,8 @@ class Register extends Component {
 				<input type="password" className ="form-control" id="password" name="password" value={this.state.password} onChange= {this.setPassword}></input><br></br>
 				<label>Repeat Password:</label>
 				<input type="password" className ="form-control" id="rpassword" name="rpassword" value={this.state.rpassword} onChange= {this.setRPassword}></input><br></br><br></br>
-				<h4>Tell US What You Like</h4><br></br>
+				<h2>Tell US What You Like</h2><br></br>
+				<p id="listInfo"> Please have atleast 3 items in each list. (Items are separated by ",")</p><br />
 				<label>Sports:</label>
 				<input type="text" className ="form-control" id="Sports" name="Sports" value={this.state.sports} onChange= {this.setSport}></input><br></br>
 				<label>Movies:</label>
@@ -104,6 +139,7 @@ class Register extends Component {
 				<input type="text" className ="form-control" id="television" name="television" value={this.state.television} onChange= {this.setTVShow}></input><br></br>
 				<button value="Register" onClick = {this.handleClick}>Register</button>		
 				<button  onClick = {this.props.handlerLgRg} >Next</button>
+				
 			</div>
 		); 
 	}

@@ -9,7 +9,7 @@ class MainSearch extends Component {
 		this.state = { 
 			keyword: '',
 			category: '',
-			//loading: false
+			loading: false
 		};
 		this.setCategory = this.setCategory.bind(this);
 		this.setKeyword = this.setKeyword.bind(this);
@@ -18,7 +18,7 @@ class MainSearch extends Component {
 
 
 	handleClick = () => {
-		//this.setState({loading: true});		
+		this.setState({loading: true});		
 
 		fetch('/api/search', {
 		method: 'POST',
@@ -42,8 +42,8 @@ class MainSearch extends Component {
 		});
 		
 		this.props.handlerResults([{title: "onet", url: "http://www.google.ca", description: "des1"}, {title: "one2", url: "url2", description: "des3"}]);
-		//setTimeout(()=>{this.props.handlerMSearch()} , 2500); 
-		this.props.handlerMSearch();
+		setTimeout(()=>{this.props.handlerMSearch()} , 2500); 
+		//this.props.handlerMSearch();
 		
 	}
 	
@@ -63,7 +63,11 @@ class MainSearch extends Component {
 					value={this.state.keyword}
 					onChange={this.setKeyword}
 					></input><br></br>
-				<button value="SearchButton" onClick = {this.handleClick} >Search</button><br /><br />			
+				<button value="SearchButton" onClick = {this.handleClick} disabled={this.state.loading} >
+					{this.state.loading && <i className="fa fa-refresh fa-spin" style={{ marginRight: "5px" }} />}
+					{!this.state.loading && <span>Search</span>}
+					{this.state.loading && <span>Searching for Results</span>}
+				</button><br /><br />			
 				<div>
 					<label>Pick a Category</label> <br />				
 					<label>
@@ -109,13 +113,15 @@ class MainSearch extends Component {
 						onChange={this.setCategory} 
 					/>TV Shows</label>
 				</div>
-				
+				<i className="fa fa-refresh fa-spin" style={{ marginRight: "5px" }} />
+				<span></span>
+				{this.state.loading && <Load />}
 			</div>
 		); 
 	}
 }
-//{this.state.loading && <Load />}
-// disabled={this.state.loading}
+					//
+					// disabled={this.state.loading}
 					// {this.state.loading && <i className="fa fa-refresh fa-spin" style={{ marginRight: "5px" }} />}
 					// {!this.state.loading && <span>Search</span>}
 					// {this.state.loading && <span>Searching for Results</span>}

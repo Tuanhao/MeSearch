@@ -9,7 +9,10 @@ class App extends Component {
 	// Initialize state
 	state = { 
 		userId: '',
-		results: []
+		results: [],
+		MSearchDone: false,
+		LoginDone: false
+		
 	}
 
 	constructor(props) {
@@ -40,8 +43,6 @@ class App extends Component {
 			<html>
 				<head>
 					<title>MeSearch</title>
-					<script type="text/javascript" src="js/jquery.js"></script>
-					<script type="text/javascript" src="js/qrcode.js"></script>
 				</head>
 				<body>
 					<div className="App">
