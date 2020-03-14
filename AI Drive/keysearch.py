@@ -1,16 +1,22 @@
-# dependencies
+"""
+Created on 3/5/2020
+
+@author: Zhi Qiao
+"""
+
 import json
 import operator
-from tabulate import tabulate
+# from tabulate import tabulate
 from functions import *  # all functions reside in this file
 
 # get data from wiki
 wikipedia_api_link = "http://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch="
 wikipedia_link = "http://en.wikipedia.org/wiki/"
 
+
 def wikisearch(stringkey):
     # get search word
-    string_query = stringkey  # python3 main.py batman yes|no <-- argv[1]
+    string_query = stringkey
     if len(string_query) <= 0:
         search_mode = False
     elif len(string_query) >= 1:
@@ -62,15 +68,14 @@ def wikisearch(stringkey):
             final_list.append([key, value, round(percentage_value, 4)])
             word_list.append(key)
 
-        print_headers = ['Word', 'Frequency', 'Frequency Percentage']
+        # print_headers = ['Word', 'Frequency', 'Frequency Percentage']
 
         # print the table with tabulate
-        print(tabulate(final_list, headers=print_headers, tablefmt='orgtbl'))
-        #print(word_list)
+        # print(tabulate(final_list, headers=print_headers, tablefmt='orgtbl'))
+        # print(word_list)
 
     # throw an exception in case it breaks
     except requests.exceptions.Timeout:
         print("The server didn't respond. Please, try again later.")
 
     return word_list
-

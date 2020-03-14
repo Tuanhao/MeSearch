@@ -1,7 +1,14 @@
+"""
+Created on 2/21/2020
+
+@author: Zhi Qiao
+"""
+
 from bs4 import BeautifulSoup
+from nltk.corpus import stopwords
 import requests
 import re
-from stop_words import get_stop_words
+##from stop_words import get_stop_words
 
 
 # clean word with regex
@@ -44,12 +51,14 @@ def createFrequencyTable(word_list):
 
 
 # remove stop words
-stop_words = get_stop_words('en')
+stop_words = set(stopwords.words('english'))
 common_wikipage_words = ['page', 'find', 'servers', 'mean', 'alternatively', 'can', 'visit', 'main', 'read',
                          'information', 'type', 'error', "use", "build", "name", "work", "top", "s", "th", "since",
                          "many", 'act', 'time', "human", 'year', 'include', 'however', 'world', 'prey','tag','al','quot',
                          'b','js','ss','alt','meta','po','x','y','z','view','title','div']
-discarded_words = stop_words + common_wikipage_words
+for w in common_wikipage_words:
+    stop_words.add(w)
+discarded_words = stop_words
 
 
 def remove_stop_words(frequency_list):
