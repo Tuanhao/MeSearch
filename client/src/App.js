@@ -4,7 +4,6 @@ import LoginAndRegistration from './LoginAndRegistration.js';
 import MainSearch from './MainSearch.js';
 import SearchResults from './SearchResults.js';
 //import Setting from './Setting.js';
-//import './css/bootstrap.css';
 
 class App extends Component {
 	// Initialize state
@@ -38,6 +37,7 @@ class App extends Component {
 	handlerUserId(value) { this.setState({userId: value}) }
 	
 	handlerResults(value) { this.setState({results: value}) }
+	test() {alert('it works');}
 
 	render() {
 		return (
@@ -47,7 +47,9 @@ class App extends Component {
 					<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 				</head>
 				<body>
+					
 					<div className="App">
+						<h1><span id="me">Me</span>Search</h1>
 						{!this.state.LoginDone && <LoginAndRegistration 
 							handlerLgRg = {this.handlerLgRg} 
 							handlerUserId = {this.handlerUserId} 
@@ -64,8 +66,10 @@ class App extends Component {
 						/>}
 					</div>
 				</body>
-				<foot>
-				</foot>
+				<footer>
+					<br /><br />
+					{(this.state.LoginDone && !this.state.MSearchDone) && <p id ="settingButton" onClick={this.test}><u>Preferences Setting</u></p>}
+				</footer>
 			</html>
 		)
 	}

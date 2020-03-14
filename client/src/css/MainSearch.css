@@ -1,4 +1,117 @@
-#search {
-	margin-left: 2.5em;
-	margin-right: 2.5em;
+/* #search { */
+	/* margin-left: 2.5em; */
+	/* margin-right: 2.5em; */
+/* } */
+
+.form-control2 {
+  display: block;
+  width: 40%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #90EE90;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #fff;
+  border-radius: 0.5rem;
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  margin: auto;
+  
+}
+
+
+.form-control2:focus {
+   color: #90EE90;
+  background-color: #fff;
+  border-color: #90EE79;
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+}
+
+#settingButton {
+	align: center;
+	position: absolute;
+    bottom: 0;
+	margin-left: 43.5%;
+	font-size: 1.25rem;
+	cursor: pointer;
+	
+}
+
+#settingButton:hover {
+  color: #00FF00;
+}
+
+#settingButton:focus, #settingButton.focus {
+  color: #fff;
+  background-color: #90EE90;
+  border-color: #90EE79;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+}
+
+
+/* CSS for radio buttons */
+
+.category-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.category-box > div {
+	text-align: left;
+	padding-left: 35%;
+}
+
+input[type="radio"]:checked {
+    background-color:#FFF;
+    border-color: #4c4;
+	color: white;
+}
+
+input[type="radio"] {
+
+  border: 5px solid #000;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  color: #FFF;
+  background-color: #FFF;
+	z-index: 5;
+	transition: border .25s linear;
+	-webkit-transition: border .25s linear;
+}
+
+.radio-input label {
+    display: inline-block;
+    background-color: #ddd;
+    padding: 10px 20px;
+    font-family: sans-serif, Arial;
+    font-size: 16px;
+    border: 2px solid #444;
+    border-radius: 4px;
+}
+
+input[type="radio"]:focus, .radio-label:focus {
+  color: #fff;
+  background-color: #90EE90;
+  border-color: #90EE79;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+}
+
+
+.radio-label:hover {
+	color: #00FF00;
+}
+
+.radio-input input[type=radio]:hover {
+	color: #00FF00;
 }

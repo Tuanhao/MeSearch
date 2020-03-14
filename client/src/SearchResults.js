@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-//import './css/SearchResults.css';
-//import './js/bootstrap.js';
+import './css/SearchResults.css';
 import {render} from 'react-dom'
 import QrCode from 'qrcode.react';
 
@@ -10,26 +9,25 @@ class SearchResults extends Component {
 		this.state = { 
 			results: this.props.results,
 			ShowQR: false,
-			QRResult: "None",
-			test: false
+			QRResult: "None"
 		};
-		this.off = this.off.bind(this);
-		this.on = this.on.bind(this);
+		this.QRoff = this.QRoff.bind(this);
+		this.QRon = this.QRon.bind(this);
 	}
 		
 	createResults() {
 		let res = this.state.results;
 		let tab = []
 
-		//setTimeout(()=>{this.setState({test: true})} , 2500);
-		//this.setState({test: true});
 		for (let i = 0; i < res.length ; i++) {
 		  tab.push(
 			<tr>
-				<a href={res[i].url}>{res[i].title}</a><br />
-				<p> {res[i].description} </p>
-				<button value="BackButton" onClick = { () => this.setQRCode( res[i].url )}>Generate QRCode</button>
-				<button value="BackButton" onClick = {() => this.off()}>Off</button>
+				<div className="URL-box">
+					<a href={res[i].url}>{res[i].title}</a><br />
+					<p><i> {res[i].description} </i></p>
+				</div><div className="QRCode-box">	
+					<button value="QRButton" onClick = { () => this.setQRCode( res[i].url )}>Generate QRCode for Search Result {i + 1}</button>
+				</div>
 			</tr>
 		  )
 		}
@@ -38,16 +36,14 @@ class SearchResults extends Component {
 	}
   
 	setQRCode(value) {
-		this.on();
+		this.QRon();
 
-		this.setState({
-			QRResult: value
-		});
-	  
+		this.setState({ QRResult: value });
 	}
-	off() { this.setState({ShowQR: false}); }
 	
-	on() { this.setState({ShowQR: true}); }
+	QRoff() { this.setState({ShowQR: false}); }
+	
+	QRon() { this.setState({ShowQR: true}); }
 	
 	QRGenerater() {
 		let result = this.createResults()
@@ -66,17 +62,20 @@ class SearchResults extends Component {
 		const result = this.createResults()
 		const showqr = this.state.ShowQR
 		const qrresult = this.state.QRResult
+		const rButton = this.state.ShowQR;
 		
 		return (		
 			<div className="SearchResults">
-				<h1><span id="me">Me</span>Search</h1>
 				<button value="BackButton" onClick = {this.props.handlerRSearch}>Back to Search</button>
+					{rButton && <button value="removeQR" onClick = {this.QRoff} >Remove QRCode</button>}
+					
 				<hr></hr>
 				<div className="results">
+					{showqr && <div ><QrCode id='QRCode' size={290} value={qrresult}/></div>}
 					<table>
 						{ result }
 					</table>
-					{showqr && <div ><QrCode id='QRCode' size={290} value={qrresult}/></div>}
+					
 				</div>
 			</div>
 		); 

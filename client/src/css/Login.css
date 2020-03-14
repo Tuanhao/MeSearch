@@ -5,6 +5,7 @@ button-group,
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  align: left;
 }
 
 button-group > button,
@@ -60,4 +61,35 @@ button-group > button:focus, button-group > button:active, button-group > button
 .Login > button-group:not(:first-child) > button {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+
+.form-login {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #90EE90;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #fff;
+  border-radius: 0.5rem;
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  margin: auto;
+  
+}
+
+.form-login:focus {
+  color: #90EE90;
+  background-color: #fff;
+  border-color: #90EE79;
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
 }

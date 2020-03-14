@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-//import './css/MainSearch.css';
-//import './css/font-awesome.css';
+import './css/MainSearch.css';
 
 class MainSearch extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
 			keyword: '',
-			category: '',
+			category: 'sports',
 			loading: false
 		};
 		this.setCategory = this.setCategory.bind(this);
@@ -40,8 +39,8 @@ class MainSearch extends Component {
 			
 		});
 		
-		//this.props.handlerResults([{title: "onet", url: "http://www.google.ca", description: "des1"}, {title: "one2", url: "url2", description: "des3"}]);
-		setTimeout(()=>{this.props.handlerMSearch()} , 2500); 
+		//this.props.handlerResults([{title: "onet i like the computer", url: "http://www.google.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."}, {title: "one2 the dod was walking", url: "url2", description: "des3I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."}]);
+		setTimeout(()=>{this.props.handlerMSearch()} , 8000); 
 		//this.props.handlerMSearch();
 		
 	}
@@ -53,7 +52,6 @@ class MainSearch extends Component {
 	render() {
 		return (
 			<div className="MainSearch">
-				<h1><span id="me">Me</span>Search</h1>
 				<input 
 					type="text" 
 					className ="form-control2" 
@@ -68,60 +66,67 @@ class MainSearch extends Component {
 					{this.state.loading && <i className="fa fa-refresh fa-spin" style={{ marginRight: "5px" }} />}
 					{!this.state.loading && <span>Search</span>}
 					{this.state.loading && <span>Searching for Results</span>}
-				</button><br /><br />			
-				<div>
-					<label>Pick a Category</label> <br />				
-					<label>
-					<input 
-						type="radio" 
-						value="sports" 
-						checked={this.state.category === 'sports'} 
-						onChange={this.setCategory} 
-					/>Sports</label>
-					<label>
-					<input 
-						type="radio" 
-						value="movies" 
-						checked={this.state.category === 'movies'} 
-						onChange={this.setCategory} 
-					/>Movies</label>
-					<label>
-					<input 
-						type="radio" 
-						value="music" 
-						checked={this.state.category === 'music'} 
-						onChange={this.setCategory} 
-					/>Music</label>
-					<label>
-					<input 
-						type="radio" 
-						value="books" 
-						checked={this.state.category === 'books'} 
-						onChange={this.setCategory} 
-					/>Books</label>
-					<label>
-					<input 
-						type="radio" 
-						value="games" 
-						checked={this.state.category === 'games'} 
-						onChange={this.setCategory} 
-					/>Games</label>
-					<label>
-					<input 
-						type="radio" 
-						value="television" 
-						checked={this.state.category === 'television'} 
-						onChange={this.setCategory} 
-					/>TV Shows</label>
+				</button><br /><br />		
+				<label><u>Pick a Category</u></label> <br />
+				<div className="category-box">
+					<div>			
+						<label className="radio-label">
+						<input 
+							type="radio" 
+							value="sports" 
+							className="radio-input"
+							checked={this.state.category === 'sports'} 
+							onChange={this.setCategory} 
+						/>Sports</label><br />
+						<label className="radio-label">
+						<input 
+							type="radio" 
+							value="movies" 
+							className="radio-input"
+							checked={this.state.category === 'movies'} 
+							onChange={this.setCategory} 
+						/>Movies</label>
+					</div>
+					<div>	
+						<label className="radio-label">
+						<input 
+							type="radio" 
+							value="music" 
+							className="radio-input"
+							checked={this.state.category === 'music'} 
+							onChange={this.setCategory} 
+						/>Music</label><br />
+						<label className="radio-label">
+						<input 
+							type="radio" 
+							value="books" 
+							className="radio-input"
+							checked={this.state.category === 'books'} 
+							onChange={this.setCategory} 
+						/>Books</label>
+					</div>
+					<div>	
+						<label className="radio-label">
+						<input 
+							type="radio" 
+							value="games" 
+							className="radio-input"
+							checked={this.state.category === 'games'} 
+							onChange={this.setCategory} 
+						/>Games</label>	<br />
+						<label className="radio-label">
+						<input 
+							type="radio" 
+							value="television" 
+							className="radio-input"
+							checked={this.state.category === 'television'} 
+							onChange={this.setCategory} 
+						/>TV Shows</label>
+					</div>
 				</div>
 			</div>
 		); 
 	}
 }
-					//
-					// disabled={this.state.loading}
-					// {this.state.loading && <i className="fa fa-refresh fa-spin" style={{ marginRight: "5px" }} />}
-					// {!this.state.loading && <span>Search</span>}
-					// {this.state.loading && <span>Searching for Results</span>}
 
 export default MainSearch;

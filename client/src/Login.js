@@ -40,6 +40,10 @@ class Login extends Component {
 	setUsername(event) { this.setState({username: event.target.value}); }
 	
 	setPassword(event) { this.setState({password: event.target.value}); }
+	
+	handleClickBack() {
+		
+	}
 
 	render() {
 		return (
@@ -47,7 +51,7 @@ class Login extends Component {
 				<label>Username:</label>
 				<input 
 					type="text" 
-					className ="form-control" 
+					className ="form-login" 
 					id="username" 
 					name="username"
 					value={this.state.username}
@@ -56,13 +60,14 @@ class Login extends Component {
 				<label>Password:</label>
 				<input 
 					type="password" 
-					className ="form-control" 
+					className ="form-login" 
 					id="password" 
 					name="password"
 					value={this.state.password}
 					onChange={this.setPassword}
 				></input><br></br>
 				<button  value="Login"  onClick = {this.handleClick} >Login</button>
+				<button  value="BackButton"  onClick = {this.handleClickBack} >Back</button>
 			</div>
 		); 
 	}
