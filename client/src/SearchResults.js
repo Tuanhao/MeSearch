@@ -23,7 +23,7 @@ class SearchResults extends Component {
 		  tab.push(
 			<tr>
 				<div className="URL-box">
-					<a href={res[i].url}>{res[i].title}</a><br />
+					<a href={res[i].url} target="_blank">{res[i].title}</a><br />
 					<p><i> {res[i].description} </i></p>
 				</div><div className="QRCode-box">	
 					<button value="QRButton" onClick = { () => this.setQRCode( res[i].url )}>Generate QRCode for Search Result {i + 1}</button>
@@ -37,7 +37,6 @@ class SearchResults extends Component {
   
 	setQRCode(value) {
 		this.QRon();
-
 		this.setState({ QRResult: value });
 	}
 	

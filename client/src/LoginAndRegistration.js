@@ -13,6 +13,7 @@ class LoginAndRegistration extends Component {
 		}
 		this.handleClickLG = this.handleClickLG.bind(this);
 		this.handleClickRG = this.handleClickRG.bind(this);
+		this.handleClickBack = this.handleClickBack.bind(this);
 	}
 	
 	handleClickLG() {this.setState({ isShowLG: true })}
@@ -20,15 +21,20 @@ class LoginAndRegistration extends Component {
 	handleClickRG() {this.setState({ isShowRG: true })}
 	
 	handlerUserId(value) {this.setState({ userId: value })}
+	
+	handleClickBack() {
+		this.setState({ isShowRG: false })
+		this.setState({ isShowLG: false })
+	}
 
 	render() {
 		return (
 			<div>
 				{!(this.state.isShowLG || this.state.isShowRG) && <button onClick={this.handleClickLG}>Login</button>}
-				{this.state.isShowLG && <Login handlerLgRg = {this.props.handlerLgRg} handlerUserId = {this.props.handlerUserId} />}
+				{this.state.isShowLG && <Login handlerLgRg = {this.props.handlerLgRg} handlerUserId = {this.props.handlerUserId} handleClickBack ={this.handleClickBack}/>}
 
-				{!(this.state.isShowLG || this.state.isShowRG) && <button onClick={this.handleClickRG}>Register</button>}
-				{this.state.isShowRG && <Register  handlerLgRg = {this.props.handlerLgRg}  handlerUserId = {this.props.handlerUserId}/>}	
+				{!(this.state.isShowLG || this.state.isShowRG) && <button onClick={this.handleClickRG} >Register</button>}
+				{this.state.isShowRG && <Register  handlerLgRg = {this.props.handlerLgRg}  handlerUserId = {this.props.handlerUserId} handleClickBack ={this.handleClickBack}/>}	
 			</div>
 		);
 	}

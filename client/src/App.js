@@ -3,7 +3,7 @@ import './css/App.css';
 import LoginAndRegistration from './LoginAndRegistration.js';
 import MainSearch from './MainSearch.js';
 import SearchResults from './SearchResults.js';
-//import Setting from './Setting.js';
+import Setting from './Setting.js';
 
 class App extends Component {
 	// Initialize state
@@ -11,7 +11,8 @@ class App extends Component {
 		userId: '',
 		results: [],
 		MSearchDone: false,
-		LoginDone: false
+		LoginDone: false,
+		ShowSettings: false
 		
 	}
 
@@ -23,6 +24,7 @@ class App extends Component {
 		this.handlerRSearch = this.handlerRSearch.bind(this)
 		this.handlerUserId = this.handlerUserId.bind(this)
 		this.handlerResults = this.handlerResults.bind(this)
+		this.handleSetting = this.handleSetting.bind(this)
 	}
 
 	handlerLgRg() { this.setState({LoginDone: true}) }
@@ -30,6 +32,13 @@ class App extends Component {
 	handlerMSearch() { this.setState({MSearchDone: true}) }
 	
 	handlerRSearch() { 
+		this.setState({ShowSettings: false})
+		this.setState({MSearchDone: false})
+		this.setState({LoginDone: true})
+	}
+	
+	handleSetting() { 
+		this.setState({ShowSettings: true})
 		this.setState({MSearchDone: false})
 		this.setState({LoginDone: true})
 	}
@@ -54,7 +63,7 @@ class App extends Component {
 							handlerLgRg = {this.handlerLgRg} 
 							handlerUserId = {this.handlerUserId} 
 						/>}
-						{(this.state.LoginDone && !this.state.MSearchDone) && <MainSearch 
+						{(this.state.LoginDone && !this.state.MSearchDone && !this.state.ShowSettings) && <MainSearch 
 							handlerMSearch = {this.handlerMSearch} 
 							userId = {this.state.userId}
 							handlerResults = {this.handlerResults}
@@ -64,11 +73,14 @@ class App extends Component {
 							handlerRSearch = {this.handlerRSearch}
 							results = {this.state.results} 
 						/>}
+						{this.state.ShowSettings && <Setting
+							handlerRSearch = {this.handlerRSearch}
+						/>}
 					</div>
 				</body>
 				<footer>
 					<br /><br />
-					{(this.state.LoginDone && !this.state.MSearchDone) && <p id ="settingButton" onClick={this.test}><u>Preferences Setting</u></p>}
+					{(this.state.LoginDone && !this.state.MSearchDone && !this.state.ShowSettings) && <p id ="settingButton" onClick={this.handleSetting}><u>Preferences Setting</u></p>}
 				</footer>
 			</html>
 		)

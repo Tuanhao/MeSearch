@@ -41,9 +41,9 @@ class Login extends Component {
 	
 	setPassword(event) { this.setState({password: event.target.value}); }
 	
-	handleClickBack() {
+	// handleClickBack() {
 		
-	}
+	// }
 
 	render() {
 		return (
@@ -67,7 +67,7 @@ class Login extends Component {
 					onChange={this.setPassword}
 				></input><br></br>
 				<button  value="Login"  onClick = {this.handleClick} >Login</button>
-				<button  value="BackButton"  onClick = {this.handleClickBack} >Back</button>
+				<button  value="BackButton"  onClick = {this.props.handleClickBack} >Back</button>
 			</div>
 		); 
 	}

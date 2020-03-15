@@ -62,10 +62,9 @@ class Register extends Component {
 			} 
 		}
 		
-		console.log(count);
+		// console.log(count);
 		
 		if(count < 2) {
-			alert('Sorry, but you must have 3 or more items in your list. Items are separated by ","');
 			return false;
 		}
 		return true;
@@ -80,6 +79,7 @@ class Register extends Component {
 		overallTrue = this.settingCheck(this.state.games);
 		overallTrue = this.settingCheck(this.state.television);
 		if (!overallTrue) {
+			alert('Sorry, but you must have 3 or more items in your list. Items are separated by ","');
 			return;
 		}
 		
@@ -138,7 +138,7 @@ class Register extends Component {
 				<label>TV Shows:</label>
 				<input type="text" className ="form-register" id="television" name="television" value={this.state.television} onChange= {this.setTVShow}></input><br></br>
 				<button value="Register" onClick = {this.handleClick}>Register</button>
-				<button  onClick = {this.props.handlerLgRg} >Back</button>				
+				<button  onClick = {this.props.handleClickBack} >Back</button>				
 				<button  onClick = {this.props.handlerLgRg} >Next</button>
 				
 			</div>
