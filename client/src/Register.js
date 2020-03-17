@@ -56,17 +56,21 @@ class Register extends Component {
 	setRPassword(event) { this.setState({rpassword: event.target.value}) }
 	
 	settingCheck(string) {
-		let expression1 = /(\w+, \w+|\w+,\w+)/;
+		let expression1 = /(\w+, +\w+|\w+,\w+)/;
 		let expression2 = /(, \w+|,\w+)/;
+		let expression3 = /(^\w&$\w)/;
 		
-		if((string.match(expression1) == null) || (string.match(expression2) == null)) {
+		if((string.match(expression1) == null) || (string.match(expression2) == null) || (string.match(expression3) == null)) {
 			return false;
 		}
 		
 		let count1 = string.match(expression1).length;	
 		let count2 = string.match(expression2).length;
-
-		if((count1 <= 0) && (count2 < 2)) {
+		let count3 = string.match(expression3).length;
+		alert(count1);
+		alert(count2);
+		
+		if((count1 <= 0) && (count2 < 2) || (count3 <= 0)) {
 			return false;
 		}
 		return true;
@@ -136,11 +140,11 @@ class Register extends Component {
 				}
 			}
 			if(c[6]) {
-				alert('Sorry, Password does not match Repeat Password or is invalid, try again please');
+				//alert('Sorry, Password does not match Repeat Password or is invalid, try again please');
 			} if (c[8]){
-				alert('Sorry, username or is invalid, try again please');
+				//alert('Sorry, username or is invalid, try again please');
 			}	if (count > 0) {
-				alert('Sorry, but you must have 3 or more items in your list. Items are separated by "," try again please');
+				//alert('Sorry, but you must have 3 or more items in your list. Items are separated by "," try again please');
 			}
 			this.setState({check: c});
 			return;
