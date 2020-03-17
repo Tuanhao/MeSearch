@@ -67,8 +67,6 @@ class Register extends Component {
 		let count1 = string.match(expression1).length;	
 		let count2 = string.match(expression2).length;
 		let count3 = string.match(expression3).length;
-		alert(count1);
-		alert(count2);
 		
 		if((count1 <= 0) && (count2 < 2) || (count3 <= 0)) {
 			return false;
@@ -140,11 +138,11 @@ class Register extends Component {
 				}
 			}
 			if(c[6]) {
-				//alert('Sorry, Password does not match Repeat Password or is invalid, try again please');
+				alert('Sorry, Password does not match Repeat Password or is invalid, try again please');
 			} if (c[8]){
-				//alert('Sorry, username or is invalid, try again please');
+				alert('Sorry, username or is invalid, try again please');
 			}	if (count > 0) {
-				//alert('Sorry, but you must have 3 or more items in your list. Items are separated by "," try again please');
+				alert('Sorry, but you must have 3 or more items in your list. Items are separated by "," try again please');
 			}
 			this.setState({check: c});
 			return;
