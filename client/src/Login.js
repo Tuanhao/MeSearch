@@ -7,7 +7,9 @@ class Login extends Component {
 		this.state = { 
 			username: '',
 			password: '',
-			userId: ''
+			userId: '',
+			status: '',
+			check: false	
 
 		};
 		this.setUsername = this.setUsername.bind(this);
@@ -33,34 +35,41 @@ class Login extends Component {
 			console.log(myJson)
 			this.setState({userId: myJson.userId}) 
 			this.props.handlerUserId(this.state.userId)
+			this.setState({status: myJson.status})
+			if (this.state.status != 'OK') {
+				alert('Sorry, username or password is wrong, try again please');
+				this.setState({check: true})
+				return;
+			} else {
+				this.setState({check: false})
+				this.props.handlerLgRg();
+			}
 		});
-		this.props.handlerLgRg();
+		
 	}
 	
 	setUsername(event) { this.setState({username: event.target.value}); }
 	
 	setPassword(event) { this.setState({password: event.target.value}); }
-	
-	// handleClickBack() {
-		
-	// }
 
 	render() {
+		const pWrong = <p className = "wrong">This is wrong, try again please</p>;
+		
 		return (
 			<div className="Login">
-				<label>Username:</label>
+				<label>Username:</label>{ this.state.check && pWrong}
 				<input 
 					type="text" 
-					className ="form-login" 
+					className ={ this.state.check ? "form-login-invalid" : "form-login" }
 					id="username" 
 					name="username"
 					value={this.state.username}
 					onChange={this.setUsername}
 				></input><br></br>
-				<label>Password:</label>
+				<label>Password:</label>{ this.state.check && pWrong}
 				<input 
 					type="password" 
-					className ="form-login" 
+					className ={ this.state.check ? "form-login-invalid" : "form-login" }
 					id="password" 
 					name="password"
 					value={this.state.password}

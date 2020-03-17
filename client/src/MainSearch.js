@@ -40,9 +40,7 @@ class MainSearch extends Component {
 		});
 		
 		//this.props.handlerResults([{title: "onet i like the computer", url: "http://www.google.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."}, {title: "one2 the dod was walking", url: "url2", description: "des3I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."}]);
-		setTimeout(()=>{this.props.handlerMSearch()} , 8000); 
-		//this.props.handlerMSearch();
-		
+		setTimeout(()=>{this.props.handlerMSearch()} , 9500); 		
 	}
 	
 	setCategory(event) { this.setState({category: event.target.value}); }
@@ -54,7 +52,7 @@ class MainSearch extends Component {
 			<div className="MainSearch">
 				<input 
 					type="text" 
-					className ="form-control2" 
+					className ="form-search" 
 					id="keyword" 
 					name="keyword"
 					placeholder='Search...'

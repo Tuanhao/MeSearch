@@ -99,6 +99,7 @@ body {
   color: #FFFFFF; 
   text-align: left;
   background-color: #90EE90;
+   background-image: linear-gradient(to right, #90EE90, #00FF00); 
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -190,4 +191,37 @@ button {
     -webkit-transition: none;
     transition: none;
   }
+}
+
+.footButtons {
+	align: center;
+	text-align: center;
+	position: absolute;
+    bottom: 0;
+	margin-left: 43.5%;
+	font-size: 1.25rem;
+	cursor: pointer;
+	
+}
+
+#logOut:hover {
+  color: #2A9FD6;
+}
+
+#logOut:focus, #logOut.focus {
+  color: #fff;
+  background-color: #90EE90;
+  border-color: #90EE79;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+}
+
+#logOut {
+	/* align: center; */
+	position: absolute;
+    top: 1%;
+	margin-left: 94%;
+	font-size: 1rem;
+	cursor: pointer;
+	
 }
