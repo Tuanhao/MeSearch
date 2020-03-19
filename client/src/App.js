@@ -18,7 +18,8 @@ class App extends Component {
 		books: '',
 		music: '',
 		games: '',
-		television: ''	
+		television: '',
+		filterSuccess: true
 	}
 
 	constructor(props) {
@@ -30,6 +31,7 @@ class App extends Component {
 		this.handlerUserId = this.handlerUserId.bind(this)
 		this.handlerResults = this.handlerResults.bind(this)
 		this.handleSetting = this.handleSetting.bind(this)
+		this.handlerFSuccess = this.handlerFSuccess.bind(this)
 		
 		this.setSport = this.setSport.bind(this);
 		this.setBook = this.setBook.bind(this);
@@ -68,6 +70,8 @@ class App extends Component {
 	handlerUserId(value) { this.setState({userId: value}) }
 	
 	handlerResults(value) { this.setState({results: value}) }
+	
+	handlerFSuccess(value) { this.setState({filterSuccess: value}) }
 	
 	LogOut() {
 		this.setState({userId: ''})
@@ -111,10 +115,12 @@ class App extends Component {
 							handlerMSearch = {this.handlerMSearch} 
 							userId = {this.state.userId}
 							handlerResults = {this.handlerResults}
+							handlerFSuccess = {this.handlerFSuccess}
 						/>}
 						{this.state.MSearchDone && <SearchResults
 							handlerRSearch = {this.handlerRSearch}
 							results = {this.state.results} 
+							filterSuccess =	{this.state.filterSuccess} 
 						/>}
 						{this.state.ShowSettings && <Setting
 							handlerRSearch = {this.handlerRSearch}

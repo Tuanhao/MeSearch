@@ -36,11 +36,27 @@ class MainSearch extends Component {
 		.then((myJson) => {
 			console.log(myJson.filteredResults)
 			this.props.handlerResults(myJson.filteredResults)
+			this.props.handlerFSuccess(myJson.filteredResults.filterSuccess)
 			
 		});
 		
-		//this.props.handlerResults([{title: "onet i like the computer", url: "http://www.google.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."}, {title: "one2 the dod was walking", url: "url2", description: "des3I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."}]);
-		setTimeout(()=>{this.props.handlerMSearch()} , 9500); 		
+		this.props.handlerResults([{title: "onet i like the computer", url: "http://www.google.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "2t i like the computer", url: "2", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "3t i like the computer", url: "3", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "4 i like the computer", url: "4a", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "5 i like the computer", url: "5google.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "6 i like the computer", url: "6a", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "7 i like the computer", url: "7ogle.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "7 i like the computer", url: "8ogle.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "8 i like the computer", url: "9://www.google.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "9 i like the computer", url: "10w.google.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "10 i like the computer", url: "11.google.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "11 i like the computer", url: "12ogle.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "12 i like the computer", url: "ww.google.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
+		{title: "13 i like the computer", url: "http://w", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."}
+		
+		]);
+		setTimeout(()=>{this.props.handlerMSearch()} , 10500); 		
 	}
 	
 	setCategory(event) { this.setState({category: event.target.value}); }
@@ -101,7 +117,15 @@ class MainSearch extends Component {
 							className="radio-input"
 							checked={this.state.category === 'books'} 
 							onChange={this.setCategory} 
-						/>Books</label>
+						/>Books</label><br />
+						<label className="radio-label">
+						<input 
+							type="radio" 
+							value="smart" 
+							className="radio-input"
+							checked={this.state.category === 'smart'} 
+							onChange={this.setCategory} 
+						/>Smart Search</label>
 					</div>
 					<div>	
 						<label className="radio-label">

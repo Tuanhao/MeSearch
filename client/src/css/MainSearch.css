@@ -27,8 +27,8 @@
   background-color: #fff;
   border-color: #90EE79;
   outline: 0;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
-          box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+  -webkit-box-shadow: 0 0 0 0.2rem 268e04;
+          box-shadow: 0 0 0 0.2rem 268e04;
 }
 
 #settingButton {
@@ -42,15 +42,15 @@
 }
 
 #settingButton:hover {
-  color: #00FF00;
+  color: #268e04;
 }
 
 #settingButton:focus, #settingButton.focus {
   color: #fff;
   background-color: #90EE90;
   border-color: #90EE79;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
-          box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+  -webkit-box-shadow: 0 0 0 0.2rem 268e04;
+          box-shadow: 0 0 0 0.2rem 268e04;
 }
 
 
@@ -100,15 +100,15 @@ input[type="radio"]:focus, .radio-label:focus {
   background-color: #90EE90;
   border-color: #90EE79;
   border-radius: 50%;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
-          box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+  -webkit-box-shadow: 0 0 0 0.2rem 268e04;
+          box-shadow: 0 0 0 0.2rem 268e04;
 }
 
 
 .radio-label:hover {
-	color: #00FF00;
+	color: #268e04;
 }
 
 .radio-input input[type=radio]:hover {
-	color: #00FF00;
+	color: #268e04;
 }

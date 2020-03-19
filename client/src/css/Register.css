@@ -87,8 +87,8 @@ button-group > button:focus, button-group > button:active, button-group > button
   background-color: #fff;
   border-color: #90EE79;
   outline: 0;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
-          box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+  -webkit-box-shadow: 0 0 0 0.2rem 268e04;
+          box-shadow: 0 0 0 0.2rem 268e04;
 }
 
 #listInfo {
@@ -129,6 +129,6 @@ button-group > button:focus, button-group > button:active, button-group > button
   border-color: #CC0000;
   border: 3px solid #CC0000;
   outline: 0;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
-          box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.5);
+  -webkit-box-shadow: 0 0 0 0.2rem 268e04;
+          box-shadow: 0 0 0 0.2rem 268e04;
 }

@@ -9,25 +9,33 @@ class SearchResults extends Component {
 		this.state = { 
 			results: this.props.results,
 			ShowQR: false,
-			QRResult: "None"
+			QRResult: "None",
+			More: false
 		};
 		this.QRoff = this.QRoff.bind(this);
 		this.QRon = this.QRon.bind(this);
+		this.handlerMore = this.handlerMore.bind(this);
 	}
 		
-	createResults() {
+	createResults(more) {
 		let res = this.state.results;
 		let tab = []
+		let size = 10;
+		let value = 0;
+			
+		if(more) {
+			size = res.length;
+			value = 10;
+		}
 
-		for (let i = 0; i < res.length ; i++) {
+		for (let i = value; i < size ; i++) {
 		  tab.push(
 			<tr>
 				<div className="URL-box">
-					<a href={res[i].url} target="_blank">{res[i].title}</a><br />
+					<a href={res[i].url} target="_blank">{res[i].title}</a>
+					<button value="QRButton" className="QRCode-button" onClick = { () => this.setQRCode( res[i].url )}>Generate QRCode</button><br />
 					<p><i> {res[i].description} </i></p>
-				</div><div className="QRCode-box">	
-					<button value="QRButton" onClick = { () => this.setQRCode( res[i].url )}>Generate QRCode for Search Result {i + 1}</button>
-				</div>
+				</div><div className="QRCode-box"></div>
 			</tr>
 		  )
 		}
@@ -40,41 +48,32 @@ class SearchResults extends Component {
 		this.setState({ QRResult: value });
 	}
 	
-	QRoff() { this.setState({ShowQR: false}); }
-	
+	QRoff() { this.setState({ShowQR: false}); }	
 	QRon() { this.setState({ShowQR: true}); }
-	
-	QRGenerater() {
-		let result = this.createResults()
-		let qrresult = this.state.QRResult
-		let showqr = this.state.ShowQR
-	
-		return (
-			<div>
-				<QrCode id='QRCode' size={290} value={qrresult}/>
-			</div>
-		);
-	}
-  
-    
+	handlerMore() { this.setState({More: true}); }
+     
 	render() {
-		const result = this.createResults()
-		const showqr = this.state.ShowQR
-		const qrresult = this.state.QRResult
-		const rButton = this.state.ShowQR;
+		const result = this.createResults(false)
+		const resultMore = this.createResults(true)
 		
 		return (		
 			<div className="SearchResults">
 				<button value="BackButton" onClick = {this.props.handlerRSearch}>Back to Search</button>
-					{rButton && <button value="removeQR" onClick = {this.QRoff} >Remove QRCode</button>}
+					{this.state.ShowQR && <button value="removeQR" onClick = {this.QRoff} >Remove QRCode</button>}
 					
 				<hr></hr>
 				<div className="results">
-					{showqr && <div ><QrCode id='QRCode' size={290} value={qrresult}/></div>}
+					{!this.props.filterSuccess && <span className="filterSuccess">*Sorry your Search was not able to go with your preferences, so here is a general search*</span>}
+					{this.state.ShowQR && <div><QrCode id='QRCode' size={290} value={this.state.QRResult}/></div>}
 					<table>
 						{ result }
 					</table>
-					
+
+					<table>
+						{ this.state.More && resultMore }
+					</table>
+					<hr />
+					{!this.state.More && <button value="moreButton" className="moreButton" onClick = {this.handlerMore} >More Results</button>}
 				</div>
 			</div>
 		); 
