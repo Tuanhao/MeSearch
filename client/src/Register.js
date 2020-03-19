@@ -276,7 +276,7 @@ class Register extends Component {
 				</input><br></br>
 				<button value="Register" onClick = {this.handleClick}>Register</button>
 				<button  onClick = {this.props.handleClickBack} >Back</button>				
-				<button  onClick = {this.props.handlerLgRg} >Next</button>
+
 			</div>
 		); 
 	}
