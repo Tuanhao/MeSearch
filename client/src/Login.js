@@ -36,7 +36,7 @@ class Login extends Component {
 			this.setState({userId: myJson.userId}) 
 			this.props.handlerUserId(this.state.userId)
 			this.setState({status: myJson.status})
-			if (this.state.status != 'OK') {
+			if (this.state.status != 200) {
 				//alert('Sorry, username or password is wrong, try again please');
 				this.setState({check: true})
 				return;
