@@ -5,6 +5,7 @@ const webSearchApi = require('./api/webSearchAPI')
 const config = require('./utility/mySQLconfig')
 const searchFilter = require('./utility/searchFilter')
 const bcrypt = require('bcrypt')
+const {PythonShell} = require('python-shell')
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.post('/api/login', (req, res) => {
       })
     } else {
       bcrypt.compare(password, data[0].password, function(err, result) {
+        console.log(data[0]);
         if (result) {
           res.status(200).json({
             userId: data[0].userId
@@ -128,7 +130,7 @@ app.post('/api/register', (req, res) => {
 app.post('/api/search', (req, res) => {
 
   let userId = 20
-  let category = 'sports'
+  let category = 'smart'
   let searchKeyword = 'Donald Trump'
   let filterKeywords
   if (req.body.userId) {
@@ -136,25 +138,42 @@ app.post('/api/search', (req, res) => {
     category = req.body.category
     searchKeyword = req.body.keyword
   }
-  
-
-  let loginSQL = `SELECT ${category} FROM user_profile WHERE userId='${userId}'`
- 
-  connection.query(loginSQL, (err, data) => { 
-    err? console.log(err): filterKeywords = data[0][`${category}`].split(',');
-    
-    webSearchApi.search(searchKeyword).then((result) => {
-      return result.body.value
-    }).then((searchResults) => {
-      const {filteredResults, filterSuccess} = searchFilter(connection, searchResults, filterKeywords, userId)
-      console.log('filteredResults', filteredResults);
-      res.status(200).json({filteredResults, filterSuccess})
-    }).catch((err) => {
-      res.status(500).json({
-        msg: 'Fail to perform search, please try again'
+  // smart search
+  if (category == 'smart') {
+    PythonShell.run('./AI_Drive/wikisearch.py', {args: [searchKeyword]}, (err, results) => {
+      if (err) throw err
+      filterKeywords = results.slice(-1)[0].split(/[' ,]/).filter((value)=> value.length>2)
+      webSearchApi.search(searchKeyword).then((result) => {
+        return result.body.value
+      }).then((searchResults) => {
+        const {filteredResults, filterSuccess} = searchFilter(connection, searchResults, filterKeywords, userId)
+        res.status(200).json({filteredResults, filterSuccess})
+      }).catch((err) => {
+        console.log(err);
+        res.status(500).json({
+          msg: 'Fail to perform search, please try again'
+        })
       })
     })
-  })
+  } else {
+    let loginSQL = `SELECT ${category} FROM user_profile WHERE userId='${userId}'`
+ 
+    connection.query(loginSQL, (err, data) => {
+      // if no errors, then split the data from DB into an array 
+      err? console.log(err): filterKeywords = data[0][`${category}`].split(',');
+      
+      webSearchApi.search(searchKeyword).then((result) => {
+        return result.body.value
+      }).then((searchResults) => {
+        const {filteredResults, filterSuccess} = searchFilter(connection, searchResults, filterKeywords, userId)
+        res.status(200).json({filteredResults, filterSuccess})
+      }).catch((err) => {
+        res.status(500).json({
+          msg: 'Fail to perform search, please try again'
+        })
+      })
+    })
+  }
 });
 
 

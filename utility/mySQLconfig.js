@@ -1,16 +1,8 @@
 let config = {
-  host: 'tkck4yllxdrw0bhi.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-  user: 'hho5brfpbmc6ofnj',
-  password: 'fh6u94dctasut574',
-  database: 'nrs3xu9ruvw517q0'
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER ||'root',
+  password: process.env.DB_PW ||'mesearch123',
+  database: process.env.DB_NAME ||'mesearch-general'
 }
-
-// local config
-// let config = {
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'mesearch123',
-//   database: 'mesearch-general'
-// }
 
 module.exports = config
