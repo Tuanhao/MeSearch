@@ -1,0 +1,6 @@
+requests
+beautifulsoup4
+nltk == 3.4.5
+tabulate == 0.8.6
+request == 2.22.0
+stop-word == 2018.7.23
