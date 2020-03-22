@@ -72,7 +72,7 @@ button-group > button:focus, button-group > button:active, button-group > button
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #90EE90;
+  color: #268e04;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #fff;
@@ -86,7 +86,7 @@ button-group > button:focus, button-group > button:active, button-group > button
 }
 
 .form-login:focus {
-  color: #90EE90;
+  color: #268e04;
   background-color: #fff;
   border-color: #90EE79;
   outline: 0;
@@ -102,7 +102,7 @@ button-group > button:focus, button-group > button:active, button-group > button
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #90EE90;
+  color: #000;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #CC0000;

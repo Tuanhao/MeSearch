@@ -170,16 +170,17 @@ class Register extends Component {
 			})
 			.then((myJson) => {
 				console.log(myJson)
-				this.setState({userId: myJson.userId}) 
-				this.setState({status: myJson.status})
-				this.props.handlerUserId(this.state.userId)
-				if (this.state.status != 'OK') {
+				this.setState({status: myJson.status.response})
+				if (this.state.status != 200) {
 					//alert('Sorry, this is usename is already taken, try again please');
 					c[7] = true;
 				} else {
+					this.setState({userId: myJson.userId}) 
+					this.props.handlerUserId(this.state.userId)
 					c[7] = false;
 					this.props.handlerLgRg();
 				}
+
 			});
 		} 
 		this.setState({check: c});		

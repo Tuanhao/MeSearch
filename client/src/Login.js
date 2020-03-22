@@ -33,14 +33,14 @@ class Login extends Component {
 		})
 		.then((myJson) => {
 			console.log(myJson)
-			this.setState({userId: myJson.userId}) 
-			this.props.handlerUserId(this.state.userId)
-			this.setState({status: myJson.status})
-			if (this.state.status != 'OK') {
+			this.setState({status: myJson.status.response})
+			if (this.state.status != 200) {
 				//alert('Sorry, username or password is wrong, try again please');
 				this.setState({check: true})
 				return;
 			} else {
+				this.setState({userId: myJson.userId}) 
+				this.props.handlerUserId(this.state.userId)
 				this.setState({check: false})
 				this.props.handlerLgRg();
 			}
