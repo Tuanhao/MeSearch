@@ -42,6 +42,10 @@ app.post('/api/login', (req, res) => {
       res.status(500).json({
         msg: 'Database query failed'
       })
+    } else if (data.length == 0) {
+      res.status(500).json({
+        msg: 'Account does not exist'
+      })
     } else {
       bcrypt.compare(password, data[0].password, function(err, result) {
         console.log(data[0]);

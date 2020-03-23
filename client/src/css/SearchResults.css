@@ -1,0 +1,49 @@
+/* tr { */
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr; */
+/* } */
+
+.URL-box {
+	text-align: left;
+	margin: auto;
+	width: 70%;
+}
+
+.URL-box a {
+	color: black;
+}
+
+/* .QRCode-box { */
+	/* text-align: right; */
+	/* padding-top: 4em; */
+	/* padding-right: 3em; */
+
+/* } */
+
+tr {
+	padding: 1em;
+}
+
+.QRCode-button {
+	font-size: 0.75rem;
+	margin-left: 1em; 
+
+}
+
+.filterSuccess {
+	font-size: 1rem;
+	background-color: #a7a7a7;
+	color: #FFF;
+	border-radius: 2.5rem;
+	padding-right: 0.5em;
+	padding-left: 0.5em;
+}
+
+.moreButton {
+	align: center;
+    bottom: 0;
+	font-size: 1.25rem;
+	cursor: pointer;
+	padding: 0.25em;
+	
+}
