@@ -8,7 +8,7 @@ class Login extends Component {
 			username: '',
 			password: '',
 			userId: '',
-			status: '',
+			status: 0,
 			check: false	
 
 		};
@@ -29,11 +29,10 @@ class Login extends Component {
 			})
 		})
 		.then((response) => {
+			this.setState({status: response.status})
 			return response.json()
 		})
 		.then((myJson) => {
-			console.log(myJson)
-			this.setState({status: myJson.status.response})
 			if (this.state.status != 200) {
 				//alert('Sorry, username or password is wrong, try again please');
 				this.setState({check: true})

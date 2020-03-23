@@ -5,8 +5,12 @@
 
 .URL-box {
 	text-align: left;
-	padding-right: 3.5em;
-	padding-left: 29%;
+	margin: auto;
+	width: 70%;
+}
+
+.URL-box a {
+	color: black;
 }
 
 /* .QRCode-box { */
@@ -28,7 +32,7 @@ tr {
 
 .filterSuccess {
 	font-size: 1rem;
-	background-color: #ADFF2F;
+	background-color: #a7a7a7;
 	color: #FFF;
 	border-radius: 2.5rem;
 	padding-right: 0.5em;

@@ -14,7 +14,7 @@ class Register extends Component {
 			music: '',
 			games: '',
 			television: '',
-			status: '',
+			status: 0,
 			check: Array(9).fill(false)		
 		}
 		this.setUsername = this.setUsername.bind(this);
@@ -166,14 +166,15 @@ class Register extends Component {
 				})
 			})
 			.then((response) => {
+				this.setState({status: response.status})
 				return response.json()
 			})
 			.then((myJson) => {
 				console.log(myJson)
-				this.setState({status: myJson.status.response})
 				if (this.state.status != 200) {
 					//alert('Sorry, this is usename is already taken, try again please');
 					c[7] = true;
+					console.log(myJson.msg);
 				} else {
 					this.setState({userId: myJson.userId}) 
 					this.props.handlerUserId(this.state.userId)

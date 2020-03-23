@@ -7,7 +7,8 @@ class MainSearch extends Component {
 		this.state = { 
 			keyword: '',
 			category: 'sports',
-			loading: false
+			loading: false,
+			status: 0,
 		};
 		this.setCategory = this.setCategory.bind(this);
 		this.setKeyword = this.setKeyword.bind(this);
@@ -31,13 +32,17 @@ class MainSearch extends Component {
 		})
 		})
 		.then((response) => {
+			this.setState({status: response.status})
 			return response.json()
 		})
 		.then((myJson) => {
-			console.log(myJson.filteredResults)
-			this.props.handlerResults(myJson.filteredResults)
-			this.props.handlerFSuccess(myJson.filteredResults.filterSuccess)
-			
+			if (this.state.status == 200) {
+				this.props.handlerResults(myJson.filteredResults)
+				this.props.handlerFSuccess(myJson.filteredResults.filterSuccess)
+				this.props.handlerMSearch()
+			} else {
+				console.log(myJson.msg);
+			}
 		});
 		
 		// this.props.handlerResults([{title: "onet i like the computer", url: "http://www.google.ca", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."},
@@ -56,7 +61,7 @@ class MainSearch extends Component {
 		// {title: "13 i like the computer", url: "http://w", description: "des1  I hate to complain, because it might just be the best Word Processing app out there. But, there are innumerable problems with the interface - especially manipulating/dragging the cursor for editing. Also there are periodic discrepancies in template formatting, indentions, margins and paragraph spaci..."}
 		
 		// ]);
-		setTimeout(()=>{this.props.handlerMSearch()} , 10500); 		
+		// setTimeout(()=>{this.props.handlerMSearch()} , 10500); 		
 	}
 	
 	setCategory(event) { this.setState({category: event.target.value}); }

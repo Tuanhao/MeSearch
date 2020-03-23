@@ -32,7 +32,7 @@ class SearchResults extends Component {
 		  tab.push(
 			<tr>
 				<div className="URL-box">
-					<a href={res[i].url} target="_blank">{res[i].title}</a>
+					<a href={res[i].url} target="_blank" dangerouslySetInnerHTML={{__html: res[i].title}}></a>
 					<button value="QRButton" className="QRCode-button" onClick = { () => this.setQRCode( res[i].url )}>Generate QRCode</button><br />
 					<p><i> {res[i].description} </i></p>
 				</div><div className="QRCode-box"></div>
@@ -50,7 +50,7 @@ class SearchResults extends Component {
 	
 	QRoff() { this.setState({ShowQR: false}); }	
 	QRon() { this.setState({ShowQR: true}); }
-	handlerMore() { this.setState({More: true}); }
+	handlerMore() { this.setState({More: true}); } // INCOMPLETE
      
 	render() {
 		const result = this.createResults(false)
