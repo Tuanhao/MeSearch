@@ -38,17 +38,19 @@ class Setting extends Component {
 	settingCheck(string) {
 		let expression1 = /(\w+, +\w+|\w+,\w+)/;
 		let expression2 = /(, \w+|,\w+)/;
-		let expression3 = /(^\w&$\w)/;
+		let expression3 = /(^\w)/;
+		let expression4 = /(\w$)/;
 		
-		if((string.match(expression1) == null) || (string.match(expression2) == null) || (string.match(expression3) == null)) {
+		if((string.match(expression1) == null) || (string.match(expression2) == null) || (string.match(expression3) == null)|| (string.match(expression4) == null)) {
 			return false;
 		}
 		
 		let count1 = string.match(expression1).length;	
 		let count2 = string.match(expression2).length;
 		let count3 = string.match(expression3).length;
+		let count4 = string.match(expression4).length;
 		
-		if((count1 <= 0) && (count2 < 2) || (count3 <= 0)) {
+		if((count1 <= 0) && (count2 < 2) || (count3 <= 0) || (count4 <= 0)) {
 			return false;
 		}
 		return true;
