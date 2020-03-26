@@ -23,21 +23,28 @@ class Setting extends Component {
 		
 	}
 	
-	setSport(event) { this.props.setSport(event) }
+	setSport(event) { this.setState({sports: event.target.value}) 
+		this.props.setSport(event) }
 
-	setMusic(event) { this.props.setMusic(event) }
+	setMusic(event) { this.setState({music: event.target.value}) 
+		this.props.setMusic(event) }
 	
-	setGame(event) { this.props.setGame(event) }
+	setGame(event) { this.setState({games: event.target.value}) 
+		this.props.setGame(event) }
 	
-	setBook(event) { this.props.setBook(event) }
+	setBook(event) { this.setState({books: event.target.value}) 
+		this.props.setBook(event) }
 	
-	setMovie(event) { this.props.setMovie(event) }
+	setMovie(event) { this.setState({movies: event.target.value}) 
+		this.props.setMovie(event) }
 	
-	setTVShow(event) { this.props.setTVShow(event) }
+	setTVShow(event) { this.setState({television: event.target.value}) 
+		this.props.setTVShow(event) }
+	
 	
 	settingCheck(string) {
-		let expression1 = /(\w+, +\w+|\w+,\w+)/;
-		let expression2 = /(, \w+|,\w+)/;
+		let expression1 = /(\w+, +\w+|\w+,\w+)/g;
+		let expression2 = /(, \w+)|(,\w+)/g;
 		let expression3 = /(^\w)/;
 		let expression4 = /(\w$)/;
 		
@@ -46,11 +53,11 @@ class Setting extends Component {
 		}
 		
 		let count1 = string.match(expression1).length;	
-		let count2 = string.match(expression2).length;
+		let count2 = (string.match(expression2)).length;
 		let count3 = string.match(expression3).length;
 		let count4 = string.match(expression4).length;
 		
-		if((count1 <= 0) && (count2 < 2) || (count3 <= 0) || (count4 <= 0)) {
+		if((count1 <= 0) || (count2 < 2) || (count3 <= 0) || (count4 <= 0)) {
 			return false;
 		}
 		return true;

@@ -56,8 +56,8 @@ class Register extends Component {
 	setRPassword(event) { this.setState({rpassword: event.target.value}) }
 	
 	settingCheck(string) {
-		let expression1 = /(\w+, +\w+|\w+,\w+)/;
-		let expression2 = /(, \w+|,\w+)/;
+		let expression1 = /(\w+, +\w+|\w+,\w+)/g;
+		let expression2 = /(, \w+)|(,\w+)/g;
 		let expression3 = /(^\w)/;
 		let expression4 = /(\w$)/;
 		
@@ -66,11 +66,11 @@ class Register extends Component {
 		}
 		
 		let count1 = string.match(expression1).length;	
-		let count2 = string.match(expression2).length;
+		let count2 = (string.match(expression2)).length;
 		let count3 = string.match(expression3).length;
 		let count4 = string.match(expression4).length;
 		
-		if((count1 <= 0) && (count2 < 2) || (count3 <= 0) || (count4 <= 0)) {
+		if((count1 <= 0) || (count2 < 2) || (count3 <= 0) || (count4 <= 0)) {
 			return false;
 		}
 		return true;

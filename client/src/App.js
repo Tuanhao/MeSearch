@@ -131,6 +131,13 @@ class App extends Component {
 							music= {this.state.music}
 							games= {this.state.games}
 							television= {this.state.television}
+							
+							setSport = { this.setSport }
+							setMusic ={ this.setMusic }	
+							setGame ={ this.setGame }	
+							setBook ={ this.setBook }	
+							setMovie ={ this.setMovie }	
+							setTVShow ={ this.setTVShow }	
 						/>}
 					</div>
 				</body>
