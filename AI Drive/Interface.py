@@ -11,10 +11,8 @@ ADDR = (HOST, PORT)
 User = None
 ACflag = ['sign', 'check', 'wiki', 'craw', 'end']
 totallist = []
-
 udpSerSock = socket(AF_INET, SOCK_DGRAM)
 udpSerSock.bind(ADDR)
-
 
 def Interface():
     global User
@@ -41,34 +39,38 @@ def Interface():
 
     if flag == "sign":
         User = raw[0].replace(']', '')
-        list = ['User', 'is', User]
+        list = ['User sign in: ', User]
         sendData = bytes(list.__str__().encode())
+    if User is not None:
+        if flag == "check":
+            print("current user is " + User)
+            list = ['User is', User]
+            sendData = bytes(list.__str__().encode())
 
-    if flag == "check":
-        print("current user is " + User)
-        list = ['User', 'is', User]
+        if flag == "wiki":
+            list = wiki(data)
+            totallist.extend(list)
+            sendData = bytes(list.__str__().encode())
+
+        if flag == "craw":
+            URL = raw[0].replace("'", '')
+            print(URL)
+            key = data[1:]
+            print(key)
+            list = craw(URL, key)
+            totallist.extend(list)
+            sendData = bytes(list.__str__().encode())
+
+        if flag == "end":
+            sendtotallist = totallist
+            updateData = bytes(sendtotallist.__str__().encode())
+            if updateData is not None:
+                udpSerSock.sendto(updateData, ADDR)
+            exit()
+    else:
+        print("no user")
+        list = ['no user']
         sendData = bytes(list.__str__().encode())
-
-    if flag == "wiki":
-        list = wiki(data)
-        totallist.extend(list)
-        sendData = bytes(list.__str__().encode())
-
-    if flag == "craw":
-        URL = raw[0].replace("'", '')
-        print(URL)
-        key = data[1:]
-        print(key)
-        list = craw(URL, key)
-        totallist.extend(list)
-        sendData = bytes(list.__str__().encode())
-
-    if flag == "end":
-        sendtotallist = totallist
-        updateData = bytes(sendtotallist.__str__().encode())
-        if updateData is not None:
-            udpSerSock.sendto(updateData, ADDR)
-        exit()
 
     if sendData is not None:
         udpSerSock.sendto(sendData, ADDR)
