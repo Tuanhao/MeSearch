@@ -8,37 +8,68 @@ HOST = ''
 PORT = 23567
 BUFSIZE = 1024
 ADDR = (HOST, PORT)
-
+User = None
+ACflag = ['sign', 'check', 'wiki', 'craw', 'end']
+totallist = []
 udpSerSock = socket(AF_INET, SOCK_DGRAM)
 udpSerSock.bind(ADDR)
 
-
-def udpServer():
+def Interface():
+    global User
+    print("...waiting for user infor...")
     print("...waiting for message...")
     data, ADDR = udpSerSock.recvfrom(BUFSIZE)
-    word = data.decode()
+    rword = data.decode()
     print("[%s]: From Address %s:%s receive data: %s" % (ctime(), ADDR[0], ADDR[1], data))
-    word = word.split(",")
-
+    word = rword.split(",")
     flag = re.sub(r'[^a-zA-Z0-9 ]', "", word[0])
     raw = word[1:]
+
+    if flag in ACflag:
+        print("processing " + flag)
+    else:
+        print('invalid flag')
+        list = ['invalid']
+        sendData = bytes(list.__str__().encode())
 
     data = []
     for w in raw:
         ww = re.sub(r'[^a-zA-Z0-9 ]', "", w)
         data.append(ww.strip(" "))
-    print(word)
-    print(flag)
-    if flag == "wiki":
-        list = wiki(data)
-        sendData = bytes(list.__str__().encode())
 
-    if flag == "craw":
-        URL = raw[0].replace("'", '')
-        print(URL)
-        key = data[1:]
-        print(key)
-        list = craw(URL, key)
+    if flag == "sign":
+        User = raw[0].replace(']', '')
+        list = ['User sign in: ', User]
+        sendData = bytes(list.__str__().encode())
+    if User is not None:
+        if flag == "check":
+            print("current user is " + User)
+            list = ['User is', User]
+            sendData = bytes(list.__str__().encode())
+
+        if flag == "wiki":
+            list = wiki(data)
+            totallist.extend(list)
+            sendData = bytes(list.__str__().encode())
+
+        if flag == "craw":
+            URL = raw[0].replace("'", '')
+            print(URL)
+            key = data[1:]
+            print(key)
+            list = craw(URL, key)
+            totallist.extend(list)
+            sendData = bytes(list.__str__().encode())
+
+        if flag == "end":
+            sendtotallist = totallist
+            updateData = bytes(sendtotallist.__str__().encode())
+            if updateData is not None:
+                udpSerSock.sendto(updateData, ADDR)
+            exit()
+    else:
+        print("no user")
+        list = ['no user']
         sendData = bytes(list.__str__().encode())
 
     if sendData is not None:
@@ -47,4 +78,4 @@ def udpServer():
 
 while True:
     print('waiting for commands')
-    udpServer()
+    Interface()

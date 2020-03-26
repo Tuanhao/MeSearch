@@ -20,8 +20,30 @@ def udpClient(wordlist, host, port):
     if recv_data is not None:
         print("[%s]: receiving data from server %s:%s  :%s" % (ctime(), ADDR[0], ADDR[1], recv_data))
 
+
+print('Test')
 print('send flag and data')
-wordlist = ["wiki", "one","punch"]
-udpClient(wordlist, 'localhost', 23567)
-wordlist2 = ['craw', 'https://www.journaldev.com/23674/python-remove-character-from-string','string','python']
+## test user sign in
+wordlist1 = ["sign", "Hao"]
+udpClient(wordlist1, 'localhost', 23567)
+
+##test user sign in status
+wordlist2 = ["check"]
 udpClient(wordlist2, 'localhost', 23567)
+
+##test wikisearch
+wordlist3 = ["wiki", "one", "punch"]
+udpClient(wordlist3, 'localhost', 23567)
+
+##test webcrawling
+wordlist4 = ['craw', 'https://www.journaldev.com/23674/python-remove-character-from-string',
+             'string', 'python']
+udpClient(wordlist4, 'localhost', 23567)
+
+##test invalid flag input
+wordlist5 = ['like']
+udpClient(wordlist5, 'localhost', 23567)
+
+##test end flag
+wordlist6 = ["end"]
+udpClient(wordlist6, 'localhost', 23567)
