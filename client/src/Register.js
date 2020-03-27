@@ -150,7 +150,7 @@ class Register extends Component {
 			return;
 		} 
 			
-		if ((this.state.password == this.state.rpassword) && (this.valueCheck(this.state.password))) {
+		if ((this.state.password == this.state.rpassword) && !(this.valueCheck(this.state.password))) {
 			fetch('/api/register', {
 				method: 'POST',
 				headers: {

@@ -100,7 +100,7 @@ class Setting extends Component {
 		} 	 		
 		
 		if (!overallTrue) {
-			alert('Sorry, but you must have 3 or more items in your list. Items are separated by ","');
+			//alert('Sorry, but you must have 3 or more items in your list. Items are separated by ","');
 			this.setState({check: c});
 			return;
 		} 
