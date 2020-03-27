@@ -126,7 +126,7 @@ class Setting extends Component {
 		.then((myJson) => {
 			console.log(myJson)
 		});
-		
+		this.setState({check: c});
 	}
 
 	render() {
