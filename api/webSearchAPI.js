@@ -1,6 +1,6 @@
 var unirest = require("unirest");
 
-async function search(keyword) {
+async function search(keyword, APIkey) {
   var req = unirest("GET", "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI");
 
   req.query({
@@ -13,20 +13,22 @@ async function search(keyword) {
   
   req.headers({
     "x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com",
-    "x-rapidapi-key": "355cde6390msha1726285c45f6e1p1835bbjsn580de4e72e15"
+    "x-rapidapi-key": APIkey || "355cde6390msha1726285c45f6e1p1835bbjsn580de4e72e15"
   });
   
-  
-  req.end(function (res) {
+  return req.then(function (res) {
     if (res.error) {
       console.log('webSearchAPI file', res.code);
       throw new Error(res.error);
+    } else {
+      return res
     }
   });
 
-  return req.then((res) => {
-    return res
-  })
+  // return req.then((res) => {
+  //   console.log(3);
+  //   return res
+  // })
 }
 
 module.exports.search = search

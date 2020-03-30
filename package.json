@@ -4,7 +4,7 @@
   "description": "Customized search tool - 4th Year Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
@@ -28,6 +28,7 @@
     "unirest": "^0.6.0"
   },
   "devDependencies": {
+    "jest": "^25.1.0",
     "nodemon": "^2.0.2"
   }
 }
